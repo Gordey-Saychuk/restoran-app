@@ -1,13 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Open+Sans:wght@400;600&display=swap');
+@import './fonts.css';
+
+
+:root {
+  --red: #FF5656;
+  --text: #3E3E3E;
+  --boxShadow: #D2D2D2;
+}
 
 body {
-  margin: 0;
-  font-family: 'Open Sans', 'Helvetica', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
-  font-size: 16px;
-
+  font-family: 'SF Pro Display', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
+
+

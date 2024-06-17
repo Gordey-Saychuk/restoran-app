@@ -3,7 +3,8 @@
 }
 
 .reitingRestoranDiv{
-  background-color: #FF5656;
+  background-color: var(--red);
+
   width: 42px;
   height: 25px;
   border-radius: 10px;

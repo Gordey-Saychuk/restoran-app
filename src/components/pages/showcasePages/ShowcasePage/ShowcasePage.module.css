@@ -1,3 +1,5 @@
+
+
 .background {
   background: url('../../../UI/icons/img/16-08-21-001.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -11,6 +13,7 @@
   justify-content: space-between;
   position: relative; 
   z-index: 0; 
+
 }
 
 .normalBackground {
@@ -27,6 +30,7 @@
   margin-left: 20px;
   color: white; 
   font-size: 40px; 
+  padding-top: 20px;
 }
 
 .showcaseContainer {

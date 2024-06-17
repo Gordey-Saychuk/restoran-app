@@ -14,3 +14,18 @@ body {
   min-height: 100vh;
 
 }
+
+@font-face {
+  font-family: 'SF Pro Display Regular';
+  src: url('./fonts/SFPRODISPLAYREGULAR.OTF');
+}
+
+@font-face {
+  font-family: 'SF Pro Display Medium';
+  src: url('./fonts/SFPRODISPLAYMEDIUM.OTF');
+}
+
+@font-face {
+  font-family: 'SF Pro Display Bold';
+  src: url('./fonts/SFPRODISPLAYBOLD.OTF');
+}
