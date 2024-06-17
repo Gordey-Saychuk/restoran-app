@@ -1,0 +1,14 @@
+.reitingRestoran{
+  color: white;
+}
+
+.reitingRestoranDiv{
+  background-color: #FF5656;
+  width: 42px;
+  height: 25px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}

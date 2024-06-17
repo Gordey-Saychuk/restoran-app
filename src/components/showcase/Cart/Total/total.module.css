@@ -1,0 +1,10 @@
+.Total {
+    display : flex;
+    align-items : center;
+    gap : 20px;
+    justify-content : end;
+}
+
+.number {
+    color: #f44336;
+}
