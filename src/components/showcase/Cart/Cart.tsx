@@ -5,7 +5,7 @@ import classes from './Cart.module.css';
 import CartItem from './CartItem/CartItem';
 import CartSummary from './CartSummary/CartSummary';
 import Total from './Total/Total';
-
+ 
 interface ICartProps {
   cart: ProductCartItem[];
   onWish: ({ id, isWished }: { id: ProductCartItem['productId']; isWished: boolean }) => void;
