@@ -38,7 +38,7 @@ const Cart: React.FC<ICartProps> = ({ cart, onRemove, onWish, price, weight, pro
       </div>
       <Total number={1000} />
       {/* <Rate rate={4.3} /> */}
-      <Button mode='primary'>Оформить</Button>
+      <Button def='main' mode='primary'>Оформить</Button>
     </div>
   );
 };

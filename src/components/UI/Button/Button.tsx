@@ -8,11 +8,12 @@ interface IButtonProps {
   isDisabled?: boolean;
   onClick?: () => void;
   isLoading?: boolean;
+  def? : 'default' | 'main';
 }
 
-const Button: React.FC<IButtonProps> = ({ type = 'button', children, onClick, mode, isDisabled = false, isLoading }) => {
+const Button: React.FC<IButtonProps> = ({ type = 'button', children, onClick, mode, isDisabled = false, isLoading, def="" }) => {
   return (
-    <button disabled={isDisabled || isLoading} className={`${classes.button} ${classes[mode]}`} onClick={onClick} type={type}>
+    <button disabled={isDisabled || isLoading} className={`${classes.button} ${classes[mode]} ${classes[def]}`} onClick={onClick} type={type}>
       {isLoading && <Spinner />}
       {children}
     </button>

@@ -1,11 +1,18 @@
 .cart-item {
   display: flex;
-  flex-direction: column;
   gap: 24px;
+  position : relative;
   width: 100%;
   padding: 20px 0 20px 0;
   box-sizing: border-box;
   border-bottom: 1px solid gray;
+}
+
+
+.remove {
+  position : absolute;
+  top : 15px;
+  right : 0;
 }
 
 .cart-item:last-of-type {
@@ -36,6 +43,7 @@
 .price-quantity-wrapper {
   display: flex;
   gap: 20px;
+  align-items : center;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -73,8 +81,10 @@
   justify-content: space-between;
 }
 
-.image-wrapper {
-  display: none;
+.product-info {
+  display : flex;
+  flex-direction : column;
+  justify-content : space-between;
 }
 
 .image {

@@ -18,6 +18,7 @@ import Cart from '../../../showcase/Cart/Cart';
 import CartForm from '../../../showcase/CartForm/CartForm';
 import Placeholder from '../../../UI/Placeholder/Placeholder';
 import classes from './CartPage.module.css';
+import Back from '../../../UI/Back/Back';
 
 const INIT_INPUT = {
   name: '',
@@ -96,6 +97,7 @@ const CartPage: React.FC = () => {
   return (
     <Section>
       <>
+        <Back />
         <SectionHeader title={'Корзина'} />
         <SectionBody>
           <>
