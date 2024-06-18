@@ -1,0 +1,10 @@
+.TopBar {
+    display : flex;
+    align-items: center;
+    gap : 20px;
+    position : absolute;
+    top : 20px;
+    z-index : 10;
+    height : 50px;
+    right : 30px;
+}

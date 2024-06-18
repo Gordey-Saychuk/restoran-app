@@ -7,7 +7,7 @@
   transition: all 200ms linear;
   animation: fade 200ms linear;
   position: relative;
-  box-shadow: 0px -3px 50px var(--boxShadow), 0px 3px 50px var(--boxShadow);
+  box-shadow: 0px -3px 50px var(--boxShadow), 0px -3px 50px var(--boxShadow);
   border-radius: 15px;
   padding: 10px;
   max-height: 120px;
@@ -85,9 +85,6 @@
   margin-top: 10px;
 }
 
-.title:hover {
-  color: #f44336;
-}
 
 .priceContents{
   display: flex;
@@ -104,9 +101,9 @@
 }
 
 .price {
-  color: #FF5656;
+  color: var(--red); 
   font-weight: 700;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .old-price {

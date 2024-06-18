@@ -5,6 +5,12 @@
   gap: 40px;
 }
 
+.ButtonWrapper {
+  width : 100%;
+  position : absolute;
+  bottom : 0;
+}
+
 .cartWrapper {
   padding : 0px 20px 20px 20px;
   border-radius : 12px;

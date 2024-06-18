@@ -16,7 +16,7 @@ interface IDiscountProductsPageProps {}
 const DiscountProductsPage: React.FC<IDiscountProductsPageProps> = () => {
   const { products, error } = useSelector((state: RootState) => state.product);
   const { brands } = useSelector((state: RootState) => state.brand);
-  const discountedProducts = products.filter((product) => product.discount);
+  const discountedProducts = products.filter((product) => product.name);
   const { checkFilterItem, productsTorender, checkboxItems } = useFilterByBrand(discountedProducts, brands);
   const hasProducts = discountedProducts.length > 0;
 

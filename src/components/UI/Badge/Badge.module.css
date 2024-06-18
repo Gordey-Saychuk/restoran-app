@@ -12,11 +12,11 @@
 }
 
 .count {
-  min-width: 18px;
-  height: 18px;
+  min-width: 15px;
+  height: 15px;
   position: absolute;
-  top: -9px;
-  right: -8px;
+  bottom: 2px;
+  right: -5px;
   font-size: 10px;
   background-color: #f44336;
   color: #fff;

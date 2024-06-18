@@ -11,7 +11,7 @@
 }
 
 .button {
-  padding: 0 14px;
+  padding: 0px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -20,13 +20,18 @@
 }
 
 .button:disabled {
-  color: lightgray;
-  cursor: default;
+  svg {
+    opacity: 0.5;
+  }
 }
 
 .button:hover:not(:disabled) {
   transition: color 150ms linear;
-  color: #f44336;
+  svg {
+    path {
+      stroke: #f44336;
+    }
+  }
 }
 
 .button-text {

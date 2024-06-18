@@ -1,5 +1,3 @@
-// src/pages/CartPage.js
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +16,9 @@ import Cart from '../../../showcase/Cart/Cart';
 import CartForm from '../../../showcase/CartForm/CartForm';
 import Placeholder from '../../../UI/Placeholder/Placeholder';
 import classes from './CartPage.module.css';
+import Back from '../../../UI/Back/Back';
+import TopBar from '../../../UI/TopBar/TopBar';
+import Title from '../../../UI/Title/Title';
 
 const INIT_INPUT = {
   name: '',
@@ -50,13 +51,11 @@ const CartPage: React.FC = () => {
   const price = cart.reduce((res, val) => res + val.totalPrice, 0);
   const weight = +cart.reduce((res, val) => res + val.totalWeight, 0).toFixed(2);
   const profit = cart.reduce((res, { profit = 0 }) => res + profit, 0);
-  const quantity = cart.reduce((res, { quantity }) => res + quantity, 0);
   const hasProducts = cart.length > 0;
   const summaryProps = {
     price,
     weight,
     profit,
-    quantity,
   };
 
   const handleWishlist = ({ id, isWished }: { id: CartItem['productId']; isWished: boolean }) => {
@@ -81,7 +80,6 @@ const CartPage: React.FC = () => {
       totalPrice: price,
       totalWeight: weight,
       totalDiscount: profit,
-      totalQuantity: quantity,
     };
 
     await dispatch(createOrder(order));
@@ -94,31 +92,34 @@ const CartPage: React.FC = () => {
   }
 
   return (
-    <Section>
       <>
-        <SectionHeader title={'Корзина'} />
-        <SectionBody>
-          <>
-            {!hasProducts && <Placeholder text={NO_PRODUCTS_IN_CART} />}
+        <div className={classes.Container}>
+          <TopBar />
+          <Back />
+          <Title>Корзина</Title>
+          {/* <SectionHeader title={'Корзина'} /> */}
+          <SectionBody>
+            <>
+              {!hasProducts && <Placeholder text={NO_PRODUCTS_IN_CART} />}
 
-            {hasProducts && (
-              <div className={classes['cart-page-body']}>
-                <Cart cart={cartProducts} onRemove={handleRemoveCartItem} onWish={handleWishlist} {...summaryProps} />
-                {/* <span className={classes.title}>Ваши данные</span> */
-                /* <CartForm
-                  onSubmit={submit}
-                  value={input}
-                  errors={errors}
-                  onChange={handleChange}
-                  isLoading={isLoading}
-                />
-                <button onClick={handleClearCart} className={classes.clearCartButton}>Очистить корзину</button> */}
-              </div>
-            )}
-          </>
-        </SectionBody>
+              {hasProducts && (
+                <div className={classes['cart-page-body']}>
+                  <Cart cart={cartProducts} onRemove={handleRemoveCartItem} onWish={handleWishlist} {...summaryProps} />
+                  {/* <span className={classes.title}>Ваши данные</span> */
+                  /* <CartForm
+                    onSubmit={submit}
+                    value={input}
+                    errors={errors}
+                    onChange={handleChange}
+                    isLoading={isLoading}
+                  />
+                  <button onClick={handleClearCart} className={classes.clearCartButton}>Очистить корзину</button> */}
+                </div>
+              )}
+            </>
+          </SectionBody>
+        </div>
       </>
-    </Section>
   );
 };
 

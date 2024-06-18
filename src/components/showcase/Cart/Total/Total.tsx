@@ -1,18 +1,19 @@
 import React from "react";
 import style from "./total.module.css";
-
+import { CartItem } from '../../../../types/common';
 
 
 interface TotalProps {
-    number?: number;
+ 
+    price: CartItem['totalPrice'];
 
   }
 
-const Total : React.FC<TotalProps> = ({ number }) => {
+const Total : React.FC<TotalProps> = ({price }) => {
   return (
     <div className={style.Total}>
       <div>Total:</div>
-      <div className={style.number}>${number}</div>
+      <div className={style.number}>${price}</div>
     </div>
   );
 };

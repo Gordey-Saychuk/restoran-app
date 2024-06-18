@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from '../../../store/store';
 import { wishListHandler } from '../../../store/UserSlice';
 import { Product } from '../../../types/common';
 import LoadMore from '../../UI/LoadMore/LoadMore';
-import ProductCard from '../ProductCard/ProductCard';
+import CartItem from '../Cart/CartItem/CartItem';
 import classes from './ProductCardList.module.css';
 
 interface IProductCardListProps {
@@ -25,15 +25,8 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
   const [sorted, setSorted] = useState<Product[]>([]);
 
   const sortedProducts = products.sort((a, b) => {
-    let x = a.price;
-    let y = b.price;
-    if (a.discount?.discountedPrice !== undefined) {
-      x = a.discount?.discountedPrice;
-    }
-
-    if (b.discount?.discountedPrice !== undefined) {
-      y = b.discount?.discountedPrice;
-    }
+    let x = a.discount?.discountedPrice ?? a.price;
+    let y = b.discount?.discountedPrice ?? b.price;
 
     if (sortInDescendingOrder) {
       return y - x;
@@ -71,7 +64,7 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
     setProductsToRender(list);
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     setProductsToRender(sortedProducts.slice(0, PRODUCT_LIST_LIMIT));
   }, [sortedProducts]);
 
@@ -82,40 +75,35 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
 
   return (
     <div className={classes['product-card-list']}>
-   
-        {/* <div className={classes['sort-wrapper']}>
-          <span className={classes.sort} onClick={toggleSorting}>
-            <strong>Сначала показывать:</strong> {sortInDescendingOrder ? 'подороже' : 'подешевле'}
-          </span>
-        </div> */}
-        <div className={classes.tovarConteiner}>
+      <div className={classes.tovarConteiner}>
         <ul className={classes.list}>
           {productsToRender.map((product) => (
-            <ProductCard
+            <CartItem
               key={product.id}
+              productId={product.id}
               name={product.name}
-              price={product.price}
+              price={product.discount?.discountedPrice ?? product.price}
               image={product.image}
-              discount={product.discount}
-              brand={product.brand}
-              category={product.category}
-              onWishlistClick={() => handleWishlist(product.id)}
-              isAddedToWishlist={wishlist.includes(product.id)}
-              id={product.id}
+              categoryUrl={product.category.url}
+          
+              totalPrice={product.discount?.discountedPrice ?? product.price}
+              weight={0}
+              totalWeight={0}
+          
+        
+     
             />
           ))}
         </ul>
-        </div>
-
-
-      {isLoadMoreVisible && (
+      </div>
+      {/* {isLoadMoreVisible && (
         <LoadMore
           count={count}
           itemsListLength={products.length}
           onClick={showMoreHandler}
           itemsLimit={PRODUCT_LIST_LIMIT}
         />
-      )}
+      )} */}
     </div>
   );
 };
