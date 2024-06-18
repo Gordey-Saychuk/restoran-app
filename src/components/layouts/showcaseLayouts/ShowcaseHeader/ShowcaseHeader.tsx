@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import Menu from '../../../showcase/Menu/Menu';
 import { Link } from 'react-router-dom';
+import Back from '../../../UI/Back/Back';
 
 interface IShowcaseHeaderProps {}
 
@@ -22,9 +23,12 @@ const ShowcaseHeader: React.FC<IShowcaseHeaderProps> = () => {
         {/* <Link to={`${PATHS.admin}${PATHS.orders}`} className={classes.link}>
           Перейти в админку
         </Link> */}
-
+ 
+                <Back />
+             
       
       </div>
+   
 
       {/* <div className={classes['wrapper']}>
        

@@ -17,14 +17,15 @@ const ShowcasePage: React.FC = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isCartPage = location.pathname === '/cart';
+  const isProductPage = /^\/[^/]+\/[^/]+$/.test(location.pathname); // Проверка пути для страницы продукта
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
 
   return (
-    <div className={isHomePage ? classes.background : classes.normalBackground}>
-      {isHomePage && (
+    <div className={isProductPage || isHomePage ? classes.background : classes.normalBackground}>
+      {(isHomePage || isProductPage) && (
         <div className={classes.headerInfo}>
           <TopBar fill='#fff' />
           <RestaurantName name="Gusto Bistro" />
@@ -35,15 +36,16 @@ const ShowcasePage: React.FC = () => {
 
 
       <div className={classes.showcaseContainer}>
-        <div className={`${isCartPage ? classes.showcaseCart : classes.showcase} ${isHomePage ? (isExpanded ? classes.expanded : classes.collapsed) : ''}`}>
+        <div className={`${classes.showcase} ${isProductPage || isHomePage ? (isExpanded ? classes.expanded : classes.collapsed) : ''}`}>
           {/* <ShowcaseHeader /> */}
           <ShowcaseMain>
+            
             <Outlet />
           </ShowcaseMain>
           {/* <ShowcaseFooter /> */}
         </div>
 
-        {isHomePage && (
+        {(isProductPage || isHomePage) && (
           <button onClick={toggleExpand} className={`${classes.expandButton} ${isExpanded ? classes.expandedButton : classes.collapsedButton}`}>
             {isExpanded ? <CollapseIcon /> : <ExpandIcon />}
           </button>
