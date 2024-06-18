@@ -7,11 +7,10 @@
   transition: all 200ms linear;
   animation: fade 200ms linear;
   position: relative;
-  box-shadow: 0px 4px 10px 5px #d2d2d239;
+  box-shadow: 0px -3px 50px var(--boxShadow), 0px 3px 50px var(--boxShadow);
   border-radius: 15px;
   padding: 10px;
-
-  min-height: 117px;
+  max-height: 120px;
 }
 
 @keyframes fade {
@@ -54,7 +53,8 @@
   border-radius: 4px;
   object-fit: contain;
   display: block;
-  max-width: 120px;
+  min-width: 100px;
+  max-height: 100px;
 }
 
 .discount-chip {
@@ -70,11 +70,16 @@
   z-index: 3;
 }
 
+.titleContent{
+  align-self: flex-start;
+  width: 120px;
+}
+
 .title {
   text-decoration: none;
-  align-self: flex-start;
+ 
   font-weight: 600;
-  font-size: 24px;
+  font-size: 18px;
   color: #222222;
   margin: 0;
   margin-top: 10px;
@@ -84,15 +89,24 @@
   color: #f44336;
 }
 
-.price {
+.priceContents{
   display: flex;
-  align-items: center;
-  gap: 10px;
-  align-self: flex-start;
+  align-self: flex-end;
+  justify-self: flex-start;
+  justify-content: center;
+}
+
+.priceContent{
+  align-self: flex-end;
+  width: 80px;
+  justify-self: flex-start;
+
+}
+
+.price {
   color: #FF5656;
   font-weight: 700;
   font-size: 20px;
-  margin-top: auto;
 }
 
 .old-price {

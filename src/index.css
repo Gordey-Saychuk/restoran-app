@@ -4,14 +4,14 @@
 :root {
   --red: #FF5656;
   --text: #3E3E3E;
-  --boxShadow: #D2D2D2;
+  --boxShadow: #F1F1F3;
   --white: #FFFFFF;
 }
 
 body {
   font-family: 'SF Pro Display', sans-serif;
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--text);
 }
 
 
