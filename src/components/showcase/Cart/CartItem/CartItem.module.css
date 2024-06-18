@@ -62,15 +62,18 @@
   flex-direction: column;
   width: 50%;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .price {
   font-weight: 700;
   font-size: 24px;
+  color: var(--red);
+  margin-left: auto;
 }
 
 .discount-price {
-  color: #f44336;
+  color: var(--red); 
 }
 
 .price-without-discount {

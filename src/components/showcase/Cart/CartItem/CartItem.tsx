@@ -15,17 +15,17 @@ interface ICartItemProps {
   name: ProductCartItem["name"];
   image: ProductCartItem["image"];
   price: ProductCartItem["price"];
-  quantity: ProductCartItem["quantity"];
-  totalPrice: ProductCartItem["totalPrice"];
-  weight: ProductCartItem["weight"];
-  totalWeight: ProductCartItem["totalWeight"];
+  quantity?: ProductCartItem["quantity"];
+  totalPrice?: ProductCartItem["totalPrice"];
+  weight?: ProductCartItem["weight"];
+  totalWeight?: ProductCartItem["totalWeight"];
   profit?: ProductCartItem["profit"];
   discount?: ProductCartItem["discount"];
   discountedPrice?: ProductCartItem["discountedPrice"];
-  categoryUrl: ProductCartItem["categoryUrl"];
-  isWished: ProductCartItem["isWished"];
-  onWishlist: () => void;
-  onRemove: () => void;
+  categoryUrl?: ProductCartItem["categoryUrl"];
+  isWished?: ProductCartItem["isWished"];
+  onWishlist?: () => void;
+  onRemove?: () => void;
 }
 
 const CartItem: React.FC<ICartItemProps> = ({
@@ -41,17 +41,18 @@ const CartItem: React.FC<ICartItemProps> = ({
   onWishlist,
   onRemove,
 }) => {
-  const totalPriceWithoutDiscount = price * quantity;
+  const totalPriceWithoutDiscount = price * (quantity ?? 1);
   return (
     <div className={classes["cart-item"]}>
-      <div className={classes["remove"]}>
-        <IconButton onClick={onRemove}>
-          <>
-            <TrashIcon />
-            {/* <span className={classes["wishlist-text"]}>Удалить</span> */}
-          </>
-        </IconButton>
-      </div>
+      {onRemove && (
+        <div className={classes["remove"]}>
+          <IconButton onClick={onRemove}>
+            <>
+              <TrashIcon />
+            </>
+          </IconButton>
+        </div>
+      )}
       <div className={classes["image-wrapper"]}>
         <img src={image} alt={name} className={classes.image} />
       </div>
@@ -68,30 +69,15 @@ const CartItem: React.FC<ICartItemProps> = ({
               {name}
             </Link>
           </span>
-          {/* <div className={classes["action-wrapper"]}>
-            <IconButton onClick={onRemove}>
-              <>
-                <TrashIcon />
-                <span className={classes["wishlist-text"]}>Удалить</span>
-              </>
-            </IconButton>
-
-            <IconButton onClick={onWishlist}>
-              <>
-                <FavoriteIcon filled={isWished} />
-                <span className={classes["wishlist-text"]}>
-                  {isWished ? REMOVE_FROM_WISHLIST : ADD_TO_WISHLIST}
-                </span>
-              </>
-            </IconButton>
-          </div> */}
         </div>
         <div className={classes["product-desc-wrapper"]}>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti,
           sint!
         </div>
         <div className={classes["price-quantity-wrapper"]}>
-          <QuantityBlock id={productId} disableDecrement />
+          {quantity !== undefined && (
+            <QuantityBlock id={productId} disableDecrement />
+          )}
           <div className={classes["price-wrapper"]}>
             <span
               className={`${classes.price} ${
@@ -107,6 +93,18 @@ const CartItem: React.FC<ICartItemProps> = ({
             )} */}
           </div>
         </div>
+        {/* {onWishlist && (
+          <div className={classes["action-wrapper"]}>
+            <IconButton onClick={onWishlist}>
+              <>
+                <FavoriteIcon filled={isWished} />
+                <span className={classes["wishlist-text"]}>
+                  {isWished ? REMOVE_FROM_WISHLIST : ADD_TO_WISHLIST}
+                </span>
+              </>
+            </IconButton>
+          </div>
+        )} */}
       </div>
     </div>
   );

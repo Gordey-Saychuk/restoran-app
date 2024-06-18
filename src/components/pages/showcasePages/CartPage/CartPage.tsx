@@ -1,5 +1,3 @@
-// src/pages/CartPage.js
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -53,13 +51,11 @@ const CartPage: React.FC = () => {
   const price = cart.reduce((res, val) => res + val.totalPrice, 0);
   const weight = +cart.reduce((res, val) => res + val.totalWeight, 0).toFixed(2);
   const profit = cart.reduce((res, { profit = 0 }) => res + profit, 0);
-  const quantity = cart.reduce((res, { quantity }) => res + quantity, 0);
   const hasProducts = cart.length > 0;
   const summaryProps = {
     price,
     weight,
     profit,
-    quantity,
   };
 
   const handleWishlist = ({ id, isWished }: { id: CartItem['productId']; isWished: boolean }) => {
@@ -84,7 +80,6 @@ const CartPage: React.FC = () => {
       totalPrice: price,
       totalWeight: weight,
       totalDiscount: profit,
-      totalQuantity: quantity,
     };
 
     await dispatch(createOrder(order));

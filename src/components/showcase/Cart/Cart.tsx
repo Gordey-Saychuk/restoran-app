@@ -5,7 +5,7 @@ import classes from "./Cart.module.css";
 import CartItem from "./CartItem/CartItem";
 import CartSummary from "./CartSummary/CartSummary";
 import Total from "./Total/Total";
-
+ 
 interface ICartProps {
   cart: ProductCartItem[];
   onWish: ({
@@ -19,7 +19,7 @@ interface ICartProps {
   price: ProductCartItem["price"];
   weight: ProductCartItem["weight"];
   profit: ProductCartItem["profit"];
-  quantity: ProductCartItem["quantity"];
+ 
 }
 
 const Cart: React.FC<ICartProps> = ({
@@ -29,18 +29,19 @@ const Cart: React.FC<ICartProps> = ({
   price,
   weight,
   profit,
-  quantity,
+  
 }) => {
   return (
     <div className={classes.cart}>
       <div className={classes["cart-items-wrapper"]}>
         <div className={classes.cartWrapper}>
           {cart.map((cartItem) => {
-            return (
+            return ( 
               <>
                 <CartItem
                   key={cartItem.productId}
                   {...cartItem}
+                  quantity ={undefined}
                   isWished={cartItem.isWished}
                   onRemove={() => onRemove(cartItem.productId)}
                   onWishlist={() =>
@@ -55,7 +56,8 @@ const Cart: React.FC<ICartProps> = ({
           })}
         </div>
       </div>
-      <Total number={1000} />
+      <Total  price={price} />
+      {/* <CartSummary price={price} weight={weight} profit={profit} quantity={quantity} /> */}
       {/* <Rate rate={4.3} /> */}
       <Button def="main" mode="primary">
         Оформить

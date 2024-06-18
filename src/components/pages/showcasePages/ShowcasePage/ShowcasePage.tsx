@@ -36,6 +36,11 @@ const ShowcasePage: React.FC = () => {
 
 
       <div className={classes.showcaseContainer}>
+      {(isProductPage || isHomePage) && (
+          <button onClick={toggleExpand} className={`${classes.expandButton} ${isExpanded ? classes.expandedButton : classes.collapsedButton}`}>
+            {isExpanded ? <CollapseIcon /> : <ExpandIcon />}
+          </button>
+        )}
         <div className={`${classes.showcase} ${isProductPage || isHomePage ? (isExpanded ? classes.expanded : classes.collapsed) : ''}`}>
           {/* <ShowcaseHeader /> */}
           <ShowcaseMain>
@@ -45,11 +50,7 @@ const ShowcasePage: React.FC = () => {
           {/* <ShowcaseFooter /> */}
         </div>
 
-        {(isProductPage || isHomePage) && (
-          <button onClick={toggleExpand} className={`${classes.expandButton} ${isExpanded ? classes.expandedButton : classes.collapsedButton}`}>
-            {isExpanded ? <CollapseIcon /> : <ExpandIcon />}
-          </button>
-        )}
+       
       </div>
     </div>
   );
