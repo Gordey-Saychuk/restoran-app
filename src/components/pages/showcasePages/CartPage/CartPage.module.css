@@ -4,6 +4,10 @@
     gap: 40px;
 }
 
+.Container {
+    padding : 100px 20px 0px 20px;
+}
+
 .title {
     font-family: 'Nunito';
     font-size: 28px;

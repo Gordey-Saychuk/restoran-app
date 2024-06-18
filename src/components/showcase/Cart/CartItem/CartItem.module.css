@@ -1,6 +1,6 @@
 .cart-item {
   display: flex;
-  gap: 24px;
+  gap: 10px;
   position : relative;
   width: 100%;
   padding: 20px 0 20px 0;
@@ -25,7 +25,12 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  gap: 24px;
+  gap: 12px;
+}
+
+.product-desc-wrapper {
+  font-size : 14px;
+  color : rgb(68, 75, 81);
 }
 
 .product-name {

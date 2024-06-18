@@ -1,5 +1,4 @@
 .button {
-  font-family: 'Open Sans';
   font-size: 15px;
   color: #222222;
   cursor: pointer;
@@ -36,6 +35,8 @@
   color: #fff;
   background-color: #FF5656;
 }
+
+
 
 .secondary {
   background-color: transparent;

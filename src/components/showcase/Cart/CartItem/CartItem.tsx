@@ -86,6 +86,10 @@ const CartItem: React.FC<ICartItemProps> = ({
             </IconButton>
           </div> */}
         </div>
+        <div className={classes["product-desc-wrapper"]}>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti,
+          sint!
+        </div>
         <div className={classes["price-quantity-wrapper"]}>
           <QuantityBlock id={productId} disableDecrement />
           <div className={classes["price-wrapper"]}>

@@ -10,11 +10,13 @@ import classes from './ShowcasePage.module.css';
 // SVG иконки для кнопки
 import { ReactComponent as ExpandIcon } from '../../../UI/icons/ShapeTop/Shape.svg';
 import { ReactComponent as CollapseIcon } from '../../../UI/icons/Shape/Shape.svg';
+import TopBar from '../../../UI/TopBar/TopBar';
 
 const ShowcasePage: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const isCartPage = location.pathname === '/cart';
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -24,14 +26,17 @@ const ShowcasePage: React.FC = () => {
     <div className={isHomePage ? classes.background : classes.normalBackground}>
       {isHomePage && (
         <div className={classes.headerInfo}>
+          <TopBar fill='#fff' />
           <RestaurantName name="Gusto Bistro" />
           <RestaurantRatings rating={4.5} />
         </div>
       )}
 
+
+
       <div className={classes.showcaseContainer}>
-        <div className={`${classes.showcase} ${isHomePage ? (isExpanded ? classes.expanded : classes.collapsed) : ''}`}>
-          <ShowcaseHeader />
+        <div className={`${isCartPage ? classes.showcaseCart : classes.showcase} ${isHomePage ? (isExpanded ? classes.expanded : classes.collapsed) : ''}`}>
+          {/* <ShowcaseHeader /> */}
           <ShowcaseMain>
             <Outlet />
           </ShowcaseMain>
