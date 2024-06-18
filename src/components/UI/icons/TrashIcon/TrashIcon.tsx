@@ -1,14 +1,24 @@
-import classes from './TrashIcon.module.css';
+import classes from "./TrashIcon.module.css";
 
 interface ITrashIconProps {
   width?: number;
   height?: number;
   fill?: string;
 }
-const TrashIcon: React.FC<ITrashIconProps> = ({ width = 20, height = 20, fill = '#222222' }) => {
+const TrashIcon: React.FC<ITrashIconProps> = ({
+  width = 20,
+  height = 20,
+  fill = "#222222",
+}) => {
   return (
-    <svg height={width} width={height} viewBox="0 0 48 48" className={classes.icon} fill={fill}>
-      <path d="M13.05 42q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.5H8v-3h9.4V6h13.2v1.5H40v3h-2.05V39q0 1.2-.9 2.1-.9.9-2.1.9Zm21.9-31.5h-21.9V39h21.9Zm-16.6 24.2h3V14.75h-3Zm8.3 0h3V14.75h-3Zm-13.6-24.2V39Z" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="#FF5656"
+      viewBox="0 0 16 16"
+    >
+      <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
     </svg>
   );
 };

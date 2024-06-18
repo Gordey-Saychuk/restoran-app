@@ -5,7 +5,6 @@ import style from "./total.module.css";
 
 interface TotalProps {
     number?: number;
-
   }
 
 const Total : React.FC<TotalProps> = ({ number }) => {

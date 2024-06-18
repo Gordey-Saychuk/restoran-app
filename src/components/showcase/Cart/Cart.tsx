@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { ProductCartItem } from "../../../types/common";
 import Button from "../../UI/Button/Button";
+import TableNumber from "../../UI/TableNumber/TableNumber";
 // import Rate from '../../UI/Rate/Rate';
 import classes from "./Cart.module.css";
 import CartItem from "./CartItem/CartItem";
@@ -31,6 +33,30 @@ const Cart: React.FC<ICartProps> = ({
   profit,
   quantity,
 }) => {
+
+
+  const [numberTable, setNumberTable] = useState(0);
+
+
+  const handleTable = (e : any ) => {
+    let inputValue = e.target.value;
+
+    if (inputValue === '') {
+      inputValue = '0';
+    } else {
+      if (inputValue.length > 1 && inputValue.startsWith('0')) {
+        inputValue = inputValue.slice(1);
+      }
+
+      if (Number(inputValue) > 99) {
+        inputValue = '99';
+      }
+    }
+    setNumberTable(inputValue)
+  }
+
+
+
   return (
     <div className={classes.cart}>
       <div className={classes["cart-items-wrapper"]}>
@@ -56,6 +82,7 @@ const Cart: React.FC<ICartProps> = ({
         </div>
       </div>
       <Total number={1000} />
+      <TableNumber number={numberTable} onChange={handleTable}  />
       {/* <Rate rate={4.3} /> */}
       <Button def="main" mode="primary">
         Оформить
