@@ -63,7 +63,7 @@ const Cart: React.FC<ICartProps> = ({
         <div className={classes.cartWrapper}>
           {cart.map((cartItem) => {
             return ( 
-              <> 
+              <>  
                 <CartItem
                   key={cartItem.productId}
                   {...cartItem}
