@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from '../../../store/store';
 import { setProductToCart, setToLocalStorage } from '../../../store/UserSlice';
 import { AlertType, CartItem } from '../../../types/common';
 import QuantityBlock from '../QuantityBlock/QuantityBlock';
-import classes from './AddToCartBtn.module.css';
+import classes from './AddToCartBtn.module.css'; 
 
 interface IAddToCartBtnProps {
   product: CartItem;
