@@ -46,7 +46,7 @@ const Cart: React.FC<ICartProps> = ({
                   onRemove={() => onRemove(cartItem.productId)}
                   onWishlist={() =>
                     onWish({
-                      id: cartItem.productId, 
+                      id: cartItem.productId,  
                       isWished: cartItem.isWished,
                     })
                   }
