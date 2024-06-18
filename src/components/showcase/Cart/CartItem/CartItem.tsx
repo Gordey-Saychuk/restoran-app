@@ -75,7 +75,7 @@ const CartItem: React.FC<ICartItemProps> = ({
           sint!
         </div>
         <div className={classes["price-quantity-wrapper"]}>
-          {quantity !== undefined && (
+        {quantity !== undefined && (
             <QuantityBlock id={productId} disableDecrement />
           )}
           <div className={classes["price-wrapper"]}>
