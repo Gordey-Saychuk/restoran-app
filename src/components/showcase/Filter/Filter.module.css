@@ -1,18 +1,18 @@
 .filter {
   display: flex;
   gap: 8px;
-  background-color: #ffffff;
-  padding: 16px;
+  background-color: var(--white);
+  height: 80px;
   box-sizing: border-box;
   border-radius: 4px;
   align-self: start;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
-  position: -webkit-sticky; /* Safari */
+  position: -webkit-sticky; 
   position: sticky;
   top: 0;
-  z-index: 1000; /* чтобы фильтр находился поверх других элементов */
+  z-index: 1000; 
 }
 
 .title {

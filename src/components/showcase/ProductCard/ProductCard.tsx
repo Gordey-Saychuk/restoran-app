@@ -51,11 +51,15 @@ const ProductCard: React.FC<IProductCardProps> = ({
       ) : (
         <span className={classes.price}>{price} ₽</span>
       )} */}
+        <div className={classes.titleContent}>
          <Link to={id} className={classes.title}>
         {name}
       </Link>
+        </div>
+        
+        <div className={classes.priceContent}>
  <span className={classes.price}>{price} ₽</span>
-   
+        </div>
 
       {/* <div className={classes['chips-wrapper']}>
         <Chip text={brand.name} mode={'highlighted'} />

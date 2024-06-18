@@ -13,6 +13,9 @@ import FavoriteIcon from '../../../UI/icons/FavoriteIcon/FavoriteIcon';
 import NotFound from '../NotFound/NotFound';
 import InfoBlock from './InfoBlock/InfoBlock';
 import classes from './ProductPage.module.css';
+import ShowcaseHeader from '../../../layouts/showcaseLayouts/ShowcaseHeader/ShowcaseHeader';
+import ProductCard from '../../../showcase/ProductCard/ProductCard';
+import Back from '../../../UI/Back/Back';
 
 interface IProductPageProps {}
 
@@ -42,7 +45,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
     totalWeight: weight,
     discountedPrice: discount?.discountedPrice,
     discount: discount?.percent,
-  };
+  }; 
 
   return (
     <Section>
@@ -51,6 +54,23 @@ const ProductPage: React.FC<IProductPageProps> = () => {
           <>
             <div className={classes['product-page']}>
               <div className={classes['image-wrapper']}>
+                <ShowcaseHeader />
+                
+            <ul className={classes.list}>
+              <ProductCard
+                key={product.id}
+                name={product.name}
+                price={product.price}
+                image={product.image}
+                discount={product.discount}
+                brand={product.brand}
+                category={product.category}
+                onWishlistClick={() => dispatch(wishListHandler({ id, isWished }))}
+                isAddedToWishlist={isWished}
+                id={product.id}
+              />
+            </ul>
+      
                 <img src={image} alt={name} className={classes.image} />
               </div>
               <div className={classes['content-wrapper']}>
