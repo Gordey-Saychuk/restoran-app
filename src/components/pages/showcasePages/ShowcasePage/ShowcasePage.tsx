@@ -44,7 +44,6 @@ const ShowcasePage: React.FC = () => {
         <div className={`${classes.showcase} ${isProductPage || isHomePage ? (isExpanded ? classes.expanded : classes.collapsed) : ''}`}>
           {/* <ShowcaseHeader /> */}
           <ShowcaseMain>
-            
             <Outlet />
           </ShowcaseMain>
           {/* <ShowcaseFooter /> */}

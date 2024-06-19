@@ -1,21 +1,64 @@
 .table {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.dropDown {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.dropDownButton {
+  width: 160px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  gap : 50px;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid rgb(68, 75, 81);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.dropDownArrow {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.dropDownArrow svg {
+  transform: rotate(-90deg);
+}
+
+.selectTable {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  userselect: none;
+  padding: 8px;
+  borderradius: 4px;
+  backgroundcolor: fff;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s;
 }
 
 .tableNumberTitle {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .TableNumber {
-    input {
-        width: 25px;
-        padding: 10px;
-        border-radius: 10px;
-        border: 1px solid black;
-        background: transparent;
-    }
+  input {
+    width: 25px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background: transparent;
+  }
 }
-
-

@@ -2,12 +2,11 @@ import { useState } from "react";
 import { ProductCartItem } from "../../../types/common";
 import Button from "../../UI/Button/Button";
 import TableNumber from "../../UI/TableNumber/TableNumber";
-// import Rate from '../../UI/Rate/Rate';
 import classes from "./Cart.module.css";
 import CartItem from "./CartItem/CartItem";
 import CartSummary from "./CartSummary/CartSummary";
 import Total from "./Total/Total";
- 
+
 interface ICartProps {
   cart: ProductCartItem[];
   onWish: ({
@@ -21,7 +20,6 @@ interface ICartProps {
   price: ProductCartItem["price"];
   weight: ProductCartItem["weight"];
   profit: ProductCartItem["profit"];
- 
 }
 
 const Cart: React.FC<ICartProps> = ({
@@ -31,48 +29,26 @@ const Cart: React.FC<ICartProps> = ({
   price,
   weight,
   profit,
-  
 }) => {
-
-
-  const [numberTable, setNumberTable] = useState(0);
-
-
-  const handleTable = (e : any ) => {
-    let inputValue = e.target.value;
-
-    if (inputValue === '') {
-      inputValue = '0';
-    } else {
-      if (inputValue.length > 1 && inputValue.startsWith('0')) {
-        inputValue = inputValue.slice(1);
-      }
-
-      if (Number(inputValue) > 99) {
-        inputValue = '99';
-      }
-    }
-    setNumberTable(inputValue)
-  }
-
-
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const [selectedTable, setSelectedTable] = useState<number>(0);
 
   return (
     <div className={classes.cart}>
       <div className={classes["cart-items-wrapper"]}>
         <div className={classes.cartWrapper}>
           {cart.map((cartItem) => {
-            return ( 
-              <>  
+            return (
+              <>
                 <CartItem
                   key={cartItem.productId}
                   {...cartItem}
-                  quantity ={undefined}
+                  quantity={undefined}
                   isWished={cartItem.isWished}
                   onRemove={() => onRemove(cartItem.productId)}
                   onWishlist={() =>
                     onWish({
-                      id: cartItem.productId,  
+                      id: cartItem.productId,
                       isWished: cartItem.isWished,
                     })
                   }
@@ -82,9 +58,13 @@ const Cart: React.FC<ICartProps> = ({
           })}
         </div>
       </div>
-      <Total  price={price} />
-      <TableNumber number={numberTable} onChange={handleTable}  />
-      {/* <Rate rate={4.3} /> */}
+      <Total price={price} />
+      <TableNumber
+        showDropdown={showDropdown}
+        setShowDropdown={setShowDropdown}
+        selectedTable={selectedTable}
+        setSelectedTable={setSelectedTable}
+      />
       <Button def="main" mode="primary">
         Оформить
       </Button>
