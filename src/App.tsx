@@ -33,7 +33,7 @@ const App = () => {
       children: [
         {
           path: '/',
-          element: isDataLoaded ? <DiscountProductsPage /> : <Loader />,
+          element: <DiscountProductsPage /> 
         },
         {
           path: ':url',

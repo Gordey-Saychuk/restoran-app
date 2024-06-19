@@ -3,9 +3,14 @@
   gap: 10px;
   position : relative;
   width: 100%;
-  padding: 20px 0 20px 0;
+  padding: 0px 0px 0px 0px;
   box-sizing: border-box;
   border-bottom: 1px solid gray;
+
+  
+  background-color: #FFFFFFE5;
+ 
+
 }
 
 
@@ -26,18 +31,28 @@
   justify-content: space-between;
   width: 100%;
   gap: 12px;
+  margin-top: 15px;
 }
 
 .product-desc-wrapper {
-  font-size : 14px;
-  color : rgb(68, 75, 81);
+  color : #808080;
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: left;
+  height: 20px;
 }
 
 .product-name {
   font-weight: 700;
   text-decoration: none;
-  color: #222222;
+  color: #3E3E3E;
+  font-size: 16px;
   transition: color 120ms linear;
+  font-size: 16px;
+  line-height: 18.75px;
+  letter-spacing: 0.20000000298023224px;
+  
 }
 
 .product-name:hover {
@@ -47,10 +62,12 @@
 
 .price-quantity-wrapper {
   display: flex;
-  gap: 20px;
-  align-items : center;
+  gap: 30px;
+  
   flex-direction: row;
   justify-content: flex-end;
+  margin-bottom: 20px;
+  margin-right: 20px;
 }
 
 .quantity-wrapper {
@@ -63,13 +80,17 @@
   width: 50%;
   flex-shrink: 0;
   margin-left: auto;
+
+  
 }
 
 .price {
-  font-weight: 700;
-  font-size: 24px;
   color: var(--red);
   margin-left: auto;
+  font-weight: bold;
+  font-size: 18px;
+line-height: 21.09px;
+letter-spacing: 0.22499999403953552px;
 }
 
 .discount-price {
@@ -93,13 +114,14 @@
   display : flex;
   flex-direction : column;
   justify-content : space-between;
+  width: 100%;
 }
 
 .image {
-  display: block;
+
   border-radius: 4px;
-  width: 100px;
-  min-height: 145px;
+  width: 132px;
+  max-height: 69px;
   object-fit: contain;
 }
 
@@ -109,8 +131,8 @@
     gap: 20px;
   }
 
-  .image-wrapper {
-    display: block;
+  .imageWrapper {
+    display: flex ;
   }
 
   .product-name-wrapper {
@@ -122,6 +144,7 @@
     flex-direction: column;
     flex-shrink: 0;
     align-items: flex-start;
+    
   }
 
   .action-wrapper {

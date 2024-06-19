@@ -20,7 +20,7 @@ const ShowcasePage: React.FC = () => {
   const isLanguagePage = location.pathname === '/language';
   
 
-  const isProductPage = /^\/[^/]+\/[^/]+$/.test(location.pathname); // Проверка пути для страницы продукта
+  const isProductPage = /^\/[^/]+\/[^/]+$/.test(location.pathname); 
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);

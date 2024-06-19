@@ -72,7 +72,9 @@ export type CartItem = {
   totalWeight: number;
   profit?: number;
   discount?: number;
+  description?: string;
   discountedPrice?: number;
+  
 };
 
 export type ProductCartItem = CartItem & {
@@ -80,7 +82,22 @@ export type ProductCartItem = CartItem & {
   categoryUrl: Product['category']['url'];
   image: Product['image'];
   isWished: boolean;
+
 };
+
+// src/types/common.ts
+
+export type Dish = {
+  id: number;
+  restaurant_id: number;
+  category_id: number;
+  name: string;
+  photo: string;
+  description: string;
+  price: number;
+  extra: { [key: string]: [string, number] };
+};
+
 
 export type Order = {
   id: string;

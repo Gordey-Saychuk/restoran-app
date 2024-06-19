@@ -50,7 +50,8 @@
 }
 
 .tovarConteiner{
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   width: 99% ;
   box-shadow: 0px 4px 10px #a3a3a394;
   border-radius: 15px;

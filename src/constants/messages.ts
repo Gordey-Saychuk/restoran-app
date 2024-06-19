@@ -6,7 +6,7 @@ export const NO_PRODUCTS_MESSAGE = 'Товаров нет';
 export const NO_BRANDS_MESSAGE = 'Нет производителей';
 export const NO_CATEGORIES_MESSAGE = 'Нет категорий';
 export const NO_FILTERED_RESULTS = 'По заданному фильтру нет товаров';
-export const NO_DISCOUNTED_PRODUCTS = 'Нет акционных товаров';
+export const NO_DISCOUNTED_PRODUCTS = 'Ожидайте появления продуктов';
 export const NO_PRODUCTS_IN_CART = 'Сложите в корзину нужные товары';
 export const NO_ORDERS = 'Нет заказов'
 

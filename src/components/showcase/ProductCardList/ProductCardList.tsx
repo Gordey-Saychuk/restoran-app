@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../../store/store';
 import { wishListHandler } from '../../../store/UserSlice';
-import { Product } from '../../../types/common';
+import { Product } from '../../../types/common'; 
 import LoadMore from '../../UI/LoadMore/LoadMore';
 import CartItem from '../Cart/CartItem/CartItem';
 import classes from './ProductCardList.module.css';
@@ -85,7 +85,7 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
               price={product.discount?.discountedPrice ?? product.price}
               image={product.image}
               categoryUrl={product.category.url}
-          
+              description={product.description}
               totalPrice={product.discount?.discountedPrice ?? product.price}
               weight={0}
               totalWeight={0}
@@ -109,3 +109,63 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
 };
 
 export default ProductCardList;
+
+
+
+// src/components/ProductCardList/ProductCardList.tsx
+
+// import React, { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchDishes } from '../../../store/dishActions';
+// import { RootState } from '../../../store/store';
+// import CartItem from '../Cart/CartItem/CartItem';
+// import classes from './ProductCardList.module.css';
+
+// interface IProductCardListProps {
+//   restaurantId: number;
+//   categoryId?: number;
+//   dishId?: number;
+//   products: Product[]; // Add this line to define products prop
+// }
+
+
+// const ProductCardList: React.FC<IProductCardListProps> = ({ restaurantId, categoryId, dishId }) => {
+//   const dispatch = useDispatch();
+//   const { dishes, isLoading, error } = useSelector((state: RootState) => state.dishes);
+
+//   useEffect(() => {
+//     dispatch(fetchDishes({ restaurantId, categoryId, dishId }));
+//   }, [dispatch, restaurantId, categoryId, dishId]);
+
+//   if (isLoading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   if (error.isError) {
+//     return <div>{error.message}</div>;
+//   }
+
+//   return (
+//     <div className={classes['product-card-list']}>
+//       <div className={classes.tovarConteiner}>
+//         <ul className={classes.list}>
+//           {dishes.map((dish) => (
+//             <CartItem
+//               key={dish.id}
+//               productId={dish.id}
+//               name={dish.name}
+//               price={dish.price}
+//               image={dish.photo}
+//               categoryUrl={`/category/${dish.category_id}`}
+//               totalPrice={dish.price}
+//               weight={0}
+//               totalWeight={0}
+//             />
+//           ))}
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProductCardList;

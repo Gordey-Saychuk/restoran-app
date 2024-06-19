@@ -1,10 +1,16 @@
 .product-page {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding-left: 10px;
-  padding-right: 10px;
-  
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #ffffff;
+}
+
+.cart{
+  box-shadow: 0px -3px 50px var(--boxShadow), 0px -3px 50px var(--boxShadow);
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
 
 .subtitle {
@@ -63,10 +69,14 @@
   gap: 10px;
 }
 
+.list{
+  padding: 0;
+}
+
 .image {
   border-radius: 4px;
   width: 100%;
-  display: block;
+
 }
 
 .brand {
