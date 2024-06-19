@@ -26,6 +26,7 @@ interface ICartItemProps {
   isWished?: ProductCartItem["isWished"];
   onWishlist?: () => void;
   onRemove?: () => void;
+  description?: ProductCartItem["description"]; // Make description optional
 }
 
 const CartItem: React.FC<ICartItemProps> = ({
@@ -37,74 +38,64 @@ const CartItem: React.FC<ICartItemProps> = ({
   discount,
   price,
   categoryUrl,
+  description,
   isWished,
   onWishlist,
   onRemove,
 }) => {
   const totalPriceWithoutDiscount = price * (quantity ?? 1);
+  const truncatedDescription =
+    description && description.length > 50
+      ? `${description.slice(0, 50)}...`
+      : description;
+
   return (
     <div className={classes["cart-item"]}>
       {onRemove && (
         <div className={classes["remove"]}>
           <IconButton onClick={onRemove}>
-            <>
-              <TrashIcon />
-            </>
+            <TrashIcon />
           </IconButton>
         </div>
       )}
-      <div className={classes["image-wrapper"]}>
+      <div
+        className={classes.imageWrapper}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <img src={image} alt={name} className={classes.image} />
       </div>
       <div className={classes["product-info"]}>
         <div className={classes["product-name-wrapper"]}>
-          <span>
-            <Link
-              to={generatePath("/:categoryUrl/:id", {
-                categoryUrl,
-                id: productId,
-              })}
-              className={classes["product-name"]}
-            >
-              {name}
-            </Link>
-          </span>
+          <Link
+            to={generatePath("/:categoryUrl/:id", {
+              categoryUrl,
+              id: productId,
+            })}
+            className={classes["product-name"]}
+          >
+            {name}
+          </Link>
+          <div className={classes["product-desc-wrapper"]}>
+            {truncatedDescription}
+          </div>
         </div>
-        <div className={classes["product-desc-wrapper"]}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti,
-          sint!
-        </div>
+
         <div className={classes["price-quantity-wrapper"]}>
-        {quantity !== undefined && (
-            <QuantityBlock id={productId} disableDecrement />
-          )}
+          {quantity !== undefined && <QuantityBlock id={productId} disableDecrement />}
           <div className={classes["price-wrapper"]}>
             <span
               className={`${classes.price} ${
                 discount && classes["discount-price"]
               }`}
             >
-              {totalPrice} ₽
+              <span className={classes["price"]}>$ {totalPrice}</span>
             </span>
-            {/* {discount && (
-              <span className={classes["price-without-discount"]}>
-                {totalPriceWithoutDiscount} ₽
-              </span>
-            )} */}
           </div>
         </div>
-        {/* {onWishlist && (
-          <div className={classes["action-wrapper"]}>
-            <IconButton onClick={onWishlist}>
-              <>
-                <FavoriteIcon filled={isWished} />
-                <span className={classes["wishlist-text"]}>
-                  {isWished ? REMOVE_FROM_WISHLIST : ADD_TO_WISHLIST}
-                </span>
-              </>
-            </IconButton>
-          </div>
-        )} */}
       </div>
     </div>
   );

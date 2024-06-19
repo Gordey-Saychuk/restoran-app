@@ -17,7 +17,7 @@ const ShowcasePage: React.FC = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isCartPage = location.pathname === '/cart';
-  const isProductPage = /^\/[^/]+\/[^/]+$/.test(location.pathname); // Проверка пути для страницы продукта
+  const isProductPage = /^\/[^/]+\/[^/]+$/.test(location.pathname); 
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);

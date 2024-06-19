@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import classes from './Checkbox.module.css';
 
 interface ICheckboxProps {
-  onCheck: () => void;
+  onCheck: () => void; 
   label: string;
 }
 
