@@ -22,7 +22,7 @@ const TopBar: React.FC<TopBar> = ({ fill }) => {
   return (
     <div className={style.TopBar}>
       {/* <Badge count={0} to="#" icon={<MenuIcon fill={fill} />} /> */}
-      <Badge count={0} to="/#" icon={<SwitchLanguageIcon fill={fill}/>} />
+      <Badge count={0} to="/language" icon={<SwitchLanguageIcon fill={fill}/>} />
       <Badge count={cart.length} to="/cart" icon={<CartIcon fill={fill} />} />
     </div>
   );

@@ -17,6 +17,9 @@ const ShowcasePage: React.FC = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isCartPage = location.pathname === '/cart';
+  const isLanguagePage = location.pathname === '/language';
+  
+
   const isProductPage = /^\/[^/]+\/[^/]+$/.test(location.pathname); 
 
   const toggleExpand = () => {
@@ -24,7 +27,7 @@ const ShowcasePage: React.FC = () => {
   };
 
   return (
-    <div className={isProductPage || isHomePage ? classes.background : classes.normalBackground}>
+    <div className={isLanguagePage ? classes.languageBackground : (isProductPage ||  isHomePage ? classes.background : classes.normalBackground)}>
       {(isHomePage || isProductPage) && (
         <div className={classes.headerInfo}>
           <TopBar fill='#fff' />
@@ -44,11 +47,11 @@ const ShowcasePage: React.FC = () => {
         <div className={`${classes.showcase} ${isProductPage || isHomePage ? (isExpanded ? classes.expanded : classes.collapsed) : ''}`}>
           {/* <ShowcaseHeader /> */}
           <ShowcaseMain>
-            
             <Outlet />
           </ShowcaseMain>
           {/* <ShowcaseFooter /> */}
         </div>
+        
 
        
       </div>
