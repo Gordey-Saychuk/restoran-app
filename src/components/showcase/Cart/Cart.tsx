@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductCartItem } from "../../../types/common";
 import Button from "../../UI/Button/Button";
 import TableNumber from "../../UI/TableNumber/TableNumber";
@@ -32,23 +32,24 @@ const Cart: React.FC<ICartProps> = ({
   weight,
   profit,
 }) => {
-  const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [selectedTable, setSelectedTable] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [firstLoad, setFirstLoad] = useState<boolean>(true);
 
-
-  console.log(selectedTable)
+  console.log(selectedTable);
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
+  useEffect(() => {
+    setFirstLoad(false);
+  }, []);
 
-  const handleTable = (index : number) => {
-    setSelectedTable(index)
-    toggleModal()
-  }
-  
+  const handleTable = (index: number) => {
+    setSelectedTable(index);
+    toggleModal();
+  };
 
   return (
     <div className={classes.cart}>
@@ -84,14 +85,20 @@ const Cart: React.FC<ICartProps> = ({
       /> */}
 
       <div className={classes.tableBtn} onClick={toggleModal}>
-          <div>Выбрать столик : </div>  {selectedTable === 0 ? <div style={{color : "white"}}>"Не выбран"</div> : `№ ${selectedTable}`}
+        <div>Выбрать столик : </div>{" "}
+        {selectedTable === 0 ? (
+          <div style={{ color: "white" }}>"Не выбран"</div>
+        ) : (
+          `№ ${selectedTable}`
+        )}
       </div>
 
       <Button def="main" mode="primary">
         Оформить
       </Button>
-      <div className={showModal ? classes.modalActive : classes.modal}>
-          <Title>Заголовок</Title>
+      {showModal && (
+        <div className={firstLoad ?  classes.modalInitial : classes.modalActive}>
+          <Title>Выбор стола</Title>
           <div onClick={() => handleTable(1)} className={classes.itemModal}>
             Столик номер №1
           </div>
@@ -104,7 +111,8 @@ const Cart: React.FC<ICartProps> = ({
           <div onClick={toggleModal} className={classes.closeModal}>
             <TrashIcon />
           </div>
-      </div>
+        </div>
+      )}
     </div>
   );
 };

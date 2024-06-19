@@ -27,7 +27,7 @@ const ShowcasePage: React.FC = () => {
   };
 
   return (
-    <div className={isLanguagePage ? classes.languageBackground : (isProductPage ||  isHomePage ? classes.background : classes.normalBackground)}>
+    <div className={isCartPage || isLanguagePage ? classes.languageBackground : (isProductPage ||  isHomePage ? classes.background : classes.normalBackground)}>
       {(isHomePage || isProductPage) && (
         <div className={classes.headerInfo}>
           <TopBar fill='#fff' />
