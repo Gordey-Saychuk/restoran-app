@@ -17,6 +17,9 @@ const ShowcasePage: React.FC = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isCartPage = location.pathname === '/cart';
+  const isLanguagePage = location.pathname === '/language';
+  
+
   const isProductPage = /^\/[^/]+\/[^/]+$/.test(location.pathname); // Проверка пути для страницы продукта
 
   const toggleExpand = () => {
@@ -24,7 +27,7 @@ const ShowcasePage: React.FC = () => {
   };
 
   return (
-    <div className={isProductPage || isHomePage ? classes.background : classes.normalBackground}>
+    <div className={isLanguagePage ? classes.languageBackground : (isProductPage ||  isHomePage ? classes.background : classes.normalBackground)}>
       {(isHomePage || isProductPage) && (
         <div className={classes.headerInfo}>
           <TopBar fill='#fff' />
@@ -48,6 +51,7 @@ const ShowcasePage: React.FC = () => {
           </ShowcaseMain>
           {/* <ShowcaseFooter /> */}
         </div>
+        
 
        
       </div>
