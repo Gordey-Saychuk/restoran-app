@@ -54,6 +54,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
     totalPrice: finalPrice,
     weight,
     totalWeight: weight,
+   
     discountedPrice: discount?.discountedPrice,
     discount: discount?.percent,
     image: image || '', 
@@ -65,17 +66,20 @@ const ProductPage: React.FC<IProductPageProps> = () => {
   
   return (
     <Section>
-      <SectionBody>
+      <SectionBody><>
+      <ShowcaseHeader />
+     
+        
         <div className={classes['product-page']}>
-          <div className={classes['image-wrapper']}>
-            <ShowcaseHeader />
+        
+          
 
-            <ul className={classes.list}>
+              <div className={classes.cart}>
               <CartItemComponent {...cartItem} />
-            </ul>
+              </div>
 
-            <img src={image} alt={name} className={classes.image} />
-          </div>
+          
+        
           <div className={classes['content-wrapper']}>
             <div className={classes['title-wrapper']}>
               <h1 className={classes.title}>{name}</h1>
@@ -120,6 +124,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
             <InfoBlock />
           </div>
         </div>
+        </>
       </SectionBody>
     </Section>
   );

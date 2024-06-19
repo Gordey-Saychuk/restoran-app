@@ -6,12 +6,12 @@ import Section from '../../../layouts/showcaseLayouts/Section/Section';
 import SectionBody from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBody';
 import SectionBodyGrid from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBodyGrid/SectionBodyGrid';
 import SectionHeader from '../../../layouts/showcaseLayouts/Section/SectionHeader/SectionHeader';
-import Filter from '../../../showcase/Filter/Filter';
+import Filter from '../../../showcase/Filter/Filter'; 
 import ProductCardList from '../../../showcase/ProductCardList/ProductCardList';
 import Placeholder from '../../../UI/Placeholder/Placeholder';
 import classes from './DiscountProductsPage.module.css';
 
-interface IDiscountProductsPageProps {}
+interface IDiscountProductsPageProps {} 
 
 const DiscountProductsPage: React.FC<IDiscountProductsPageProps> = () => {
   const { products, error } = useSelector((state: RootState) => state.product);
@@ -27,8 +27,9 @@ const DiscountProductsPage: React.FC<IDiscountProductsPageProps> = () => {
     
     
             <div className={classes.headerInfo}>
-              
+              <div className={classes.filter}>
               <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />
+              </div>
               {error.isError && <Placeholder text={error.message} size={'38px'} />}
               {!hasProducts && !error.isError && <Placeholder text={NO_DISCOUNTED_PRODUCTS} size={'38px'} />}
 

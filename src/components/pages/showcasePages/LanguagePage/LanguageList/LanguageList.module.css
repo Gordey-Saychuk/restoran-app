@@ -1,0 +1,28 @@
+
+.LanguageList {
+    box-shadow: 0px 10px 25px -10px black;
+    padding : 20px;
+    border-radius: 12px;
+    display  : flex;
+    flex-direction : column;
+    gap : 20px;
+}
+
+
+.LanguageItem {
+    img {
+        max-width : 70px;
+        border-radius : 8px;
+    }
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid gray;
+    display : flex;
+    align-items : center;
+    gap : 20px;
+}
+
+
+.LanguageItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}

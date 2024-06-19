@@ -7,4 +7,5 @@ export const PATHS = {
   wishlist: '/wishlist',
   cart: '/cart',
   success: 'success',
+  language : '/language'
 };

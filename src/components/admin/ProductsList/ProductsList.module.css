@@ -74,8 +74,12 @@ tbody tr:hover {
 }
 
 @media (max-width: 768px) {
+
+
+
   table,
   thead,
+
   tbody,
   th,
   td,
@@ -84,6 +88,8 @@ tbody tr:hover {
     font-size: 12px;
     text-align: left;
   }
+
+ 
 
   .filter-row {
     display: none;

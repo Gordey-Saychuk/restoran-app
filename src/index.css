@@ -9,7 +9,7 @@
 }
 
 body {
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: 'productsans';
   background-color: var(--background-color);
   color: var(--text);
 }

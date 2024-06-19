@@ -1,29 +1,18 @@
-.filter {
+.filter{
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.slider {
+
   display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px;
   gap: 8px;
-  background-color: var(--white);
-  height: 80px;
-  box-sizing: border-box;
-  border-radius: 4px;
-  align-self: start;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  position: -webkit-sticky; 
-  position: sticky;
-  top: 0;
-  z-index: 1000; 
-}
-
-.title {
  
-  font-size: 18px;
-  padding: 0 0 20px;
 }
 
-
-.title {
-  
-  font-size: 18px;
-  padding: 0 0 20px;
+.slider::-webkit-scrollbar {
+  display: none;
 }

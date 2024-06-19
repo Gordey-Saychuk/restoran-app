@@ -4,8 +4,7 @@ import { CartItem } from '../../../../types/common';
 
 
 interface TotalProps {
- 
-    price: CartItem['totalPrice'];
+  price: CartItem['totalPrice'];
 
   }
 

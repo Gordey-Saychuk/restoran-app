@@ -19,6 +19,7 @@ import CartPage from './components/pages/showcasePages/CartPage/CartPage';
 import OrdersPage from './components/pages/adminPages/OrdersPage/OrdersPage';
 import CheckoutSuccessPage from './components/pages/showcasePages/CheckoutSuccessPage/CheckoutSuccessPage';
 import NotFound from './components/pages/showcasePages/NotFound/NotFound';
+import LanguagePage from './components/pages/showcasePages/LanguagePage/LanguagePage';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -32,7 +33,7 @@ const App = () => {
       children: [
         {
           path: '/',
-          element: isDataLoaded ? <DiscountProductsPage /> : <Loader />,
+          element: <DiscountProductsPage /> 
         },
         {
           path: ':url',
@@ -55,6 +56,10 @@ const App = () => {
         {
           path: `${PATHS.cart}/${PATHS.success}`,
           element: <CheckoutSuccessPage />,
+        },
+        {
+          path: `${PATHS.language}`,
+          element: isDataLoaded ? <LanguagePage /> : <Loader />,
         },
       ],
     },
