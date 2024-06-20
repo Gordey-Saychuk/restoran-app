@@ -28,7 +28,7 @@ export const fetchDishes = createAsyncThunk(
   'dishes/fetchDishes',
   async (restaurantId: number) => {
     try {
-      const response = await axios.get(`http://94.124.78.52:8017/dishes/?restaurant_id=${restaurantId}`);
+      const response = await axios.get(`http://94.124.78.52:8017/dishes/?restaurant_id=1&category_id=${restaurantId}`);
       console.log('Response from server:', response);
       return response.data;
     } catch (error) {

@@ -74,13 +74,18 @@ export type CartItem = {
   discount?: number;
   description?: string;
   discountedPrice?: number;
-  
 };
 
+// export type CartNow = {
+//   id : number;
+//   category_id : number;
+
+// }
+
 export type ProductCartItem = CartItem & {
-  name: Product['name'];
-  categoryUrl: Product['category']['url'];
-  image: Product['image'];
+  name?: Product['name'];
+  categoryUrl?: Product['category']['url'];
+  image?: Product['image'];
   isWished: boolean;
 
 };
@@ -90,17 +95,15 @@ export type ProductCartItem = CartItem & {
 // src/types/common.ts
 
 export type Dish = {
-  id: number;
-  restaurant_id: number;
-  category_id: number;
-  name: string;
-  photo: string;
-  description: string;
-  price: number;
-  extra: { [key: string]: [string, number] };
-  isWished?: boolean; 
-
-};
+  id: any;
+  restaurant_id?: any;
+  category_id?: any;
+  name?: any;
+  photo?: any;
+  description?: any;
+  price: any;
+  extra?: { [key: string]: [string, number] };
+}
 
 
 export type Order = {

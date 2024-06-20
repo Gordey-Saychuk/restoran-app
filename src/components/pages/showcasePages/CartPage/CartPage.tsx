@@ -7,7 +7,7 @@ import useForm from '../../../../hooks/useForm';
 import { createOrder } from '../../../../store/CommonSlice';
 import { AppDispatch, RootState } from '../../../../store/store';
 import { clearCart, removeProductFromCart, setToLocalStorage, wishListHandler } from '../../../../store/UserSlice';
-import { CartItem, Product, ProductCartItem } from '../../../../types/common';
+import { CartItem, Dish, Product, ProductCartItem } from '../../../../types/common';
 import { cartFormValidator } from '../../../../utils/validators';
 import Section from '../../../layouts/showcaseLayouts/Section/Section';
 import SectionBody from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBody';
@@ -31,20 +31,25 @@ const CartPage: React.FC = () => {
   const navigate = useNavigate();
   const { cart } = useSelector((state: RootState) => state.user);
   const { wishlist } = useSelector((state: RootState) => state.user);
-  const { products } = useSelector((state: RootState) => state.product);
+  const { dishes, isLoading: dishesLoading, error: dishesError } = useSelector((state: RootState) => state.discountedProducts);
   const { error, isLoading } = useSelector((state: RootState) => state.common);
   const { input, handleChange, errors, submit } = useForm(INIT_INPUT, handleSubmit, cartFormValidator);
+  const { categories, isLoading: categoriesLoading, error: categoriesError } = useSelector((state: RootState) => state.categories);
 
-  const cartProducts: ProductCartItem[] = cart.map((cartItem) => {
-    const product = products.find((product) => product.id === cartItem.productId) as Product;
+
+  const cartProducts: Dish[] = cart.map((cartItem) => {
+    console.log(cartItem);
+    const product = dishes?.find((product) => product.id === Number(cartItem.productId));
     const isWished = wishlist.includes(cartItem.productId);
-
+    
     return {
       ...cartItem,
-      name: product.name,
-      image: product.image,
-      categoryUrl: product.category.url,
-      isWished,
+      id : product?.id,
+      name: product?.name,
+      image: product?.photo,
+      categoryUrl: product?.category_id,
+      description : product?.description,
+      price : product?.price,
     };
   });
 
@@ -62,8 +67,9 @@ const CartPage: React.FC = () => {
     dispatch(wishListHandler({ id, isWished }));
   };
 
-  const handleRemoveCartItem = (id: CartItem['productId']) => {
-    dispatch(removeProductFromCart(id));
+  const handleRemoveCartItem = (id: Dish['id']) => {
+    console.log(id)
+    dispatch(removeProductFromCart(String(id)));
     dispatch(setToLocalStorage('cart'));
   };
 

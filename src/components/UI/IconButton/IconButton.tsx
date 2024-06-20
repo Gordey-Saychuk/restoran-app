@@ -2,7 +2,7 @@ import classes from './IconButton.module.css';
 
 interface IIconButtonProps {
   children: JSX.Element;
-  onClick: () => void;
+  onClick: any;
   isDisabled?: boolean;
   column?: boolean;
   type?: 'button' | 'submit';

@@ -8,6 +8,7 @@ import userSlice from './UserSlice';
 import discountedProductsReducer from './discountedProductsSlice';
 import categoriesReducer  from './categoriesSlice';
 import productDetailsReducer from './productDetailsSlice';
+import cartSlice from './cartSlice';
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +20,7 @@ export const store = configureStore({
     discountedProducts: discountedProductsReducer,
     categories: categoriesReducer,
     productDetails: productDetailsReducer,
-
+    cart : cartSlice,
   },
 });
 

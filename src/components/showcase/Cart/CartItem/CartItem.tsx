@@ -1,17 +1,18 @@
 import React from 'react';
 import { generatePath, Link } from 'react-router-dom';
-import { ProductCartItem } from '../../../../types/common';
+import { Dish, ProductCartItem } from '../../../../types/common';
 import IconButton from '../../../UI/IconButton/IconButton';
 import FavoriteIcon from '../../../UI/icons/FavoriteIcon/FavoriteIcon';
 import TrashIcon from '../../../UI/icons/TrashIcon/TrashIcon';
 import QuantityBlock from '../../../UI/QuantityBlocks/QuantityBlock'; // Ensure correct import
 import classes from './CartItem.module.css';
+import { on } from 'events';
 
 interface ICartItemProps {
-  productId: ProductCartItem['productId'];
-  name: ProductCartItem['name'];
+  productId?: Dish['id'];
+  name?: Dish['name'];
   image: ProductCartItem['image'];
-  price: ProductCartItem['price'];
+  price: Dish['price'];
   quantity?: ProductCartItem['quantity'];
   totalPrice?: ProductCartItem['totalPrice'];
   weight?: ProductCartItem['weight'];
@@ -19,10 +20,10 @@ interface ICartItemProps {
   profit?: ProductCartItem['profit'];
   discount?: ProductCartItem['discount'];
   discountedPrice?: ProductCartItem['discountedPrice'];
-  categoryUrl?: ProductCartItem['categoryUrl'];
+  categoryUrl?: Dish['category_id'];
   isWished?: ProductCartItem['isWished'];
   onWishlist?: () => void;
-  onRemove?: () => void;
+  onRemove?: (id : string) => void;
   description?: ProductCartItem['description']; 
   extra?: Record<string, [string, number]>; 
   isProductPage?: boolean; 
@@ -52,11 +53,13 @@ const CartItem: React.FC<ICartItemProps> = ({
       ? `${description.slice(0, 50)}...`
       : description;
 
+      console.log(name,image, quantity, productId, discount , price, categoryUrl)
+  console.log(productId)
   return (
     <div className={classes['cart-item']} style={{ borderRadius }}>
       {onRemove && (
         <div className={classes['remove']}>
-          <IconButton onClick={onRemove}>
+          <IconButton onClick={() => onRemove(productId)}>
             <TrashIcon />
           </IconButton>
         </div>
@@ -74,9 +77,9 @@ const CartItem: React.FC<ICartItemProps> = ({
       <div className={classes['product-info']}>
         <div className={classes['product-name-wrapper']}>
           <Link
-            to={generatePath('/:categoryUrl/:id', {
+            to={generatePath(`/:categoryUrl/${productId}`, {
               categoryUrl,
-              id: productId,
+              id: productId?.toString(),
             })}
             className={classes['product-name']}
           >

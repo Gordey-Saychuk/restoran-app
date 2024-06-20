@@ -51,10 +51,6 @@ const App: React.FC = () => {
         },
         { path: PATHS.wishlist, element: isDataLoaded ? <WishlistPage /> : <Loader /> },
         {
-          path: PATHS.cart,
-          element: isDataLoaded ? <CartPage /> : <Loader />,
-        },
-        {
           path: `${PATHS.cart}/${PATHS.success}`,
           element: <CheckoutSuccessPage />,
         },
@@ -63,6 +59,14 @@ const App: React.FC = () => {
           element: isDataLoaded ? <LanguagePage /> : <Loader />,
         },
       ],
+    },
+    {
+      path: `${PATHS.language}`,
+      element: isDataLoaded ? <LanguagePage /> : <Loader />,
+    },
+    {
+      path: PATHS.cart,
+      element: isDataLoaded ? <CartPage /> : <Loader />,
     },
     {
       path: PATHS.admin,
