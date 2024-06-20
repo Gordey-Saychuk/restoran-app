@@ -1,0 +1,57 @@
+/* src/components/UI/SkeletonProductCard/SkeletonProductCard.module.css */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+.skeletonCard {
+  width: 95%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+.image {
+  width: 100px;
+  height: 50px;
+  background: linear-gradient(90deg, #cccccc 25%, #e0e0e0 50%, #cccccc 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  margin-left: 10px;
+}
+
+.textConteiner {
+  width: 80%;
+  margin-left: 20px;
+}
+
+.text {
+  height: 28px;
+  background: linear-gradient(90deg, #d4d4d4 25%, #e4e4e4 50%, #d4d4d4 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.texts {
+  width: 35%;
+  height: 20px;
+  background: linear-gradient(90deg, #d4d4d4 25%, #e4e4e4 50%, #d4d4d4 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}

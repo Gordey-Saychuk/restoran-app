@@ -1,0 +1,39 @@
+.quantity-block {
+  display: flex;
+  width: 100%;
+  border-radius: 4px;
+  justify-content: space-between;
+}
+
+.quantity {
+  align-self: center;
+}
+
+.button {
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #222222;
+  transition: color 150ms linear;
+}
+
+.button:disabled {
+  svg {
+    opacity: 0.5;
+  }
+}
+
+.button:hover:not(:disabled) {
+  transition: color 150ms linear;
+  svg {
+    path {
+      stroke: #f44336;
+    }
+  }
+}
+
+.button-text {
+  font-weight: 700;
+  font-size: 20px;
+}

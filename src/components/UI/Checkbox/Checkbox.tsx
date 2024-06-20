@@ -1,5 +1,3 @@
-// src/components/UI/Checkbox/Checkbox.tsx
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import classes from './Checkbox.module.css';

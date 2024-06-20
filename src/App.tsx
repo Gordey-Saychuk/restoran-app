@@ -30,7 +30,7 @@ const App: React.FC = () => {
   const routes = useRoutes([
     {
       path: PATHS.showcase,
-      element: <ShowcasePage />,
+      element: <ShowcasePage restaurantId={restaurantId} />,
       children: [
         {
           path: '/',

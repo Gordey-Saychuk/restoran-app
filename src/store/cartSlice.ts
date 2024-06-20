@@ -46,7 +46,6 @@ const cartSlice = createSlice({
       // }
       state.items.push(action.payload);
       saveCartToLocalStorage(state.items);
-      
     },
     removeProductFromCart: (state, action: PayloadAction<string>) => {
       const index = state.items.findIndex((cartItem) => cartItem.productId === action.payload);

@@ -1,15 +1,16 @@
 // src/components/pages/showcasePages/DiscountProductsPage/DiscountProductsPage.tsx
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../../../store/store';
 import { fetchDishes, Dish } from '../../../../store/discountedProductsSlice';
 import { fetchCategories } from '../../../../store/categoriesSlice';
 import Section from '../../../layouts/showcaseLayouts/Section/Section';
-import Placeholder from '../../../UI/Placeholder/Placeholder';
+import SkeletonCategory from '../../../UI/Skeleton/SkeletonCategory/SkeletonCategory';
+import SkeletonProductCard from '../../../UI/Skeleton/SkeletonProductCard/SkeletonProductCard';
 import ProductCardList from '../../../showcase/ProductCardList/ProductCardList';
 import classes from './DiscountProductsPage.module.css';
 import Filter from '../../../showcase/Filter/Filter';
+import Placeholder from '../../../UI/Placeholder/Placeholder';
 
 interface IDiscountProductsPageProps {
   restaurantId: number;
@@ -40,7 +41,13 @@ const DiscountProductsPage: React.FC<IDiscountProductsPageProps> = ({ restaurant
     <Section>
       <div className={classes.headerInfo}>
         <div className={classes.filter}>
-          {categoriesLoading && <Placeholder text="Загружаем категории..." size="38px" />}
+          {categoriesLoading && (
+            <div className={classes.skeletonCategoryContainer}>
+              {Array.from({ length: 4 }).map((_, index) => (
+                <SkeletonCategory key={index} />
+              ))}
+            </div>
+          )}
           {categoriesError && <Placeholder text={categoriesError} size="38px" />}
           {!categoriesLoading && !categoriesError && (
             <Filter 
@@ -50,7 +57,13 @@ const DiscountProductsPage: React.FC<IDiscountProductsPageProps> = ({ restaurant
           )}
         </div>
 
-        {dishesLoading && <Placeholder text="Загружаем продукты..." size="38px" />}
+        {dishesLoading && (
+          <div className={classes.skeletonProductContainer}>
+            {Array.from({ length: 6 }).map((_, index) => (
+              <SkeletonProductCard key={index} />
+            ))}
+          </div>
+        )}
         {dishesError && <Placeholder text={dishesError} size="38px" />}
         {!dishesLoading && !dishesError && filteredDishes.length === 0 && (
           <Placeholder text="No dishes available" size="38px" />

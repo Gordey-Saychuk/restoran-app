@@ -4,7 +4,7 @@ import { Dish, ProductCartItem } from '../../../../types/common';
 import IconButton from '../../../UI/IconButton/IconButton';
 import FavoriteIcon from '../../../UI/icons/FavoriteIcon/FavoriteIcon';
 import TrashIcon from '../../../UI/icons/TrashIcon/TrashIcon';
-import QuantityBlock from '../../QuantityBlock/QuantityBlock';
+import QuantityBlock from '../../../UI/QuantityBlocks/QuantityBlock'; // Ensure correct import
 import classes from './CartItem.module.css';
 
 interface ICartItemProps {
@@ -26,7 +26,7 @@ interface ICartItemProps {
   description?: ProductCartItem['description']; 
   extra?: Record<string, [string, number]>; 
   isProductPage?: boolean; 
-  setQuantity?: (quantity: number) => void; 
+  borderRadius?: string; 
 }
 
 const CartItem: React.FC<ICartItemProps> = ({
@@ -44,7 +44,7 @@ const CartItem: React.FC<ICartItemProps> = ({
   onRemove,
   extra,
   isProductPage,
-  setQuantity,
+  borderRadius, 
 }) => {
   const totalPriceWithoutDiscount = price * (quantity ?? 1);
   const truncatedDescription =
@@ -53,7 +53,7 @@ const CartItem: React.FC<ICartItemProps> = ({
       : description;
 
   return (
-    <div className={classes['cart-item']}>
+    <div className={classes['cart-item']} style={{ borderRadius }}>
       {onRemove && (
         <div className={classes['remove']}>
           <IconButton onClick={() => onRemove(productId)}>
@@ -88,14 +88,14 @@ const CartItem: React.FC<ICartItemProps> = ({
         </div>
 
         <div className={classes['price-quantity-wrapper']}>
-          {isProductPage && quantity !== undefined && setQuantity && (
-            <QuantityBlock id={productId?.toString()} quantity={quantity} setQuantity={setQuantity} />
+          {isProductPage && quantity !== undefined && (
+            <QuantityBlock id={productId} /> // Pass only the id prop
           )}
           <div className={classes['price-wrapper']}>
             <span
               className={`${classes.price} ${discount && classes['discount-price']}`}
             >
-              <span className={classes['price']}>$ {price}</span>
+              <span className={classes['price']}>${price}</span>
             </span>
           </div>
         </div>

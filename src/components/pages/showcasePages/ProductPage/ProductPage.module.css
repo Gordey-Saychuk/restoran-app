@@ -7,7 +7,15 @@
   background-color: #ffffff;
 }
 
-.cart{
+.backWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: rgb(255, 255, 255);
+  height: 91px;
+}
+
+.cart {
   box-shadow: 0px -3px 50px var(--boxShadow), 0px -3px 50px var(--boxShadow);
   border-radius: 20px;
   margin-bottom: 20px;
@@ -44,17 +52,43 @@
   flex-direction: column;
   gap: 40px;
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   padding: 16px;
-  border-radius: 4px;
+  margin-bottom: 20px;
+  border-radius: 15px;
   box-sizing: border-box;
+  box-shadow: 0px -3px 50px var(--boxShadow), 0px -3px 50px var(--boxShadow);
 }
 
 .title {
-  font-family: 'Nunito';
+ 
   font-size: 24px;
   line-height: 28px;
   margin: 0;
+}
+
+.desTitle {
+  color: #3E3E3E;  
+  font-size: 14px;
+  line-height: 16.41px;
+  letter-spacing: 0.17499999701976776px;
+  text-align: left;
+}
+
+.desc {
+  color: #A3A3A3;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: left;
+}
+
+.descs {
+  color: #A3A3A3;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
 }
 
 .actions {
@@ -69,14 +103,14 @@
   gap: 10px;
 }
 
-.list{
+.list {
   padding: 0;
+  list-style: none;
 }
 
 .image {
   border-radius: 4px;
   width: 100%;
-
 }
 
 .brand {
@@ -116,3 +150,6 @@
   flex-direction: column;
   gap: 5px;
 }
+
+
+

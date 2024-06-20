@@ -141,9 +141,6 @@
 
 
 
-
-
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -157,6 +154,7 @@ import CartItemComponent from '../../../showcase/Cart/CartItem/CartItem';
 import Back from '../../../UI/Back/Back';
 import AddToCartBtn from '../../../showcase/AddToCartBtn/AddToCartBtn';
 import { addToCart } from '../../../../store/cartSlice';
+import CustomCheckbox from '../../../UI/CustomCheckbox/CustomCheckbox';
 
 interface IProductPageProps {}
 
@@ -165,12 +163,57 @@ const ProductPage: React.FC<IProductPageProps> = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { details, isLoading, error } = useSelector((state: RootState) => state.productDetails);
   const [quantity, setQuantity] = useState<number>(1);
+  const [selectedExtras, setSelectedExtras] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     if (dishId) {
       dispatch(fetchProductDetails(Number(dishId)));
     }
   }, [dispatch, dishId]);
+
+  useEffect(() => {
+    if (details && details.extra) {
+      const initialExtras = Object.keys(details.extra).reduce((acc, key) => {
+        acc[key] = false;
+        return acc;
+      }, {} as { [key: string]: boolean });
+      setSelectedExtras(initialExtras);
+    }
+  }, [details]);
+
+  const handleExtraChange = (key: string) => {
+    setSelectedExtras((prevSelectedExtras) => ({
+      ...prevSelectedExtras,
+      [key]: !prevSelectedExtras[key],
+    }));
+  };
+
+  const calculateTotalPrice = () => {
+    let totalPrice = details?.price || 0;
+    Object.entries(selectedExtras).forEach(([key, isSelected]) => {
+      if (isSelected && details?.extra[key]) {
+        totalPrice += details.extra[key][1];
+      }
+    });
+    return totalPrice * quantity;
+  };
+
+  const handleAddToCart = () => {
+    const cartItem = {
+      productId: details?.id.toString() || '',
+      name: details?.name || '',
+      price: calculateTotalPrice(),
+      quantity,
+      image: details?.photo ? `http://94.124.78.52:8017/images/${details.photo}` : 'https://cdn.icon-icons.com/icons2/4135/PNG/512/plate_dish_food_dinnerware_icon_260731.png',
+      categoryUrl: details?.category_name || '',
+      totalPrice: calculateTotalPrice(),
+      weight: 0,
+      totalWeight: 0,
+      isWished: false,
+    };
+
+    dispatch(addToCart(cartItem));
+  };
 
   if (isLoading) {
     return <Placeholder text="Loading product details..." size="38px" />;
@@ -184,63 +227,62 @@ const ProductPage: React.FC<IProductPageProps> = () => {
     return <NotFound />;
   }
 
-  const { id, name, description, photo, price, category_name } = details; // No need for 'extra' here
-  const imageUrl = photo ? `http://94.124.78.52:8017/images/${photo}` : 'https://nevafood.ru/wp-content/uploads/2017/07/burger-ayam.jpg';
-
-  const handleAddToCart = () => {
-    const cartItem = {
-      productId: id.toString(),
-      name,
-      price,
-      quantity,
-      image: imageUrl,
-      categoryUrl: category_name,
-      totalPrice: price * quantity,
-      weight: 0, 
-      totalWeight: 0, 
-      isWished: false, 
-    };
-    
-    console.log(cartItem)
-    dispatch(addToCart(cartItem));
-    
-  };
+  const { id, name, description, photo, price, category_name, extra } = details;
+  const imageUrl = photo ? `http://94.124.78.52:8017/images/${photo}` : 'https://cdn.icon-icons.com/icons2/4135/PNG/512/plate_dish_food_dinnerware_icon_260731.png';
 
   return (
     <Section>
       <>
-        <Back />
+        <div className={classes.backWrapper}>
+          <Back />
+        </div>
         <div className={classes['product-page']}>
           <div className={classes.cart}>
-            <CartItemComponent
-              productId={id}
-              name={name}
-              price={price}
-              image={imageUrl}
-              description={description}
-              categoryUrl={category_name}
-              quantity={quantity}
-              setQuantity={setQuantity}
-              isProductPage={true} 
-            />
+          <CartItemComponent
+  productId={id.toString()}
+  name={name}
+  price={price}
+  image={imageUrl}
+ 
+  categoryUrl={category_name}
+  quantity={quantity}
+  isProductPage={true}
+  borderRadius="15px"
+/>
+
           </div>
           <div className={classes['content-wrapper']}>
-            <div className={classes['title-wrapper']}>
-              <h1 className={classes.title}>{name}</h1>
-              {/* <p>{restaurant_name}</p> */}
-            </div>
             <div className={classes['description-wrapper']}>
-              <p>{description}</p>
+              <p className={classes.desTitle}>Описание продукта</p>
+              <p className={classes.desc}>{description}</p>
             </div>
             <AddToCartBtn
               product={{
                 productId: id.toString(),
                 name,
-                price,
+                price: calculateTotalPrice(),
                 quantity,
               }}
               onClick={handleAddToCart}
             />
+          </div>
+
+          <div className={classes['content-wrapper']}>
+            <div className={classes['description-wrapper']}>
+              <p className={classes.desTitle}>Дополнительные товары</p>
+              <ul className={classes.list}>
+                {extra &&
+                  Object.entries(extra).map(([key, [extraName, extraPrice]]) => (
+                    <li className={classes.descs} key={key}>
+                      {extraName}: <p>{extraPrice} ₽</p>
+                      <CustomCheckbox
+                        checked={selectedExtras[key]}
+                        onChange={() => handleExtraChange(key)}
+                      />
+                    </li>
+                  ))}
+              </ul>
+            </div>
           </div>
         </div>
       </>
@@ -249,4 +291,3 @@ const ProductPage: React.FC<IProductPageProps> = () => {
 };
 
 export default ProductPage;
-

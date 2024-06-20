@@ -124,6 +124,12 @@ const CartPage: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    console.log('Cart items:', cart);
+  }, [cart]);
+
+  
+
   return (
     <>
       <div className={classes.Container}>
