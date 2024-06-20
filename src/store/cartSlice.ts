@@ -46,9 +46,12 @@ const cartSlice = createSlice({
       } else {
         state.items.push(action.payload);
       }
+      console.log('Updated cart:', state.items);
 
       // Сохраняем изменения в localStorage
       saveCartToLocalStorage(state.items);
+
+      console.log(saveCartToLocalStorage)
     },
     // Другие редьюсеры...
   },

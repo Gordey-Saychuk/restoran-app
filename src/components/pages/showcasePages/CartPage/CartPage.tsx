@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { NO_PRODUCTS_IN_CART } from '../../../../constants/messages';
@@ -29,16 +29,14 @@ const INIT_INPUT = {
 const CartPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { cart } = useSelector((state: RootState) => state.user);
-  const { wishlist } = useSelector((state: RootState) => state.user);
+  const cart = useSelector((state: RootState) => state.cart.items);
+  const wishlist = useSelector((state: RootState) => state.user.wishlist);
   const { dishes, isLoading: dishesLoading, error: dishesError } = useSelector((state: RootState) => state.discountedProducts);
   const { error, isLoading } = useSelector((state: RootState) => state.common);
   const { input, handleChange, errors, submit } = useForm(INIT_INPUT, handleSubmit, cartFormValidator);
   const { categories, isLoading: categoriesLoading, error: categoriesError } = useSelector((state: RootState) => state.categories);
 
-
-  const cartProducts: Dish[] = cart.map((cartItem) => {
-    console.log(cartItem);
+  const cartProducts = cart.map((cartItem) => {
     const product = dishes?.find((product) => product.id === Number(cartItem.productId));
     const isWished = wishlist.includes(cartItem.productId);
     
@@ -96,6 +94,12 @@ const CartPage: React.FC = () => {
       dispatch(setToLocalStorage('cart'));
     }
   }
+
+  useEffect(() => {
+    console.log('Cart items:', cart);
+  }, [cart]);
+
+  
 
   return (
       <>
