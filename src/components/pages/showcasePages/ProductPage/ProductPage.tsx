@@ -152,6 +152,7 @@ import classes from './ProductPage.module.css';
 import NotFound from '../NotFound/NotFound';
 import CartItemComponent from '../../../showcase/Cart/CartItem/CartItem';
 import Back from '../../../UI/Back/Back';
+import Button from '../../../UI/Button/Button';
 import AddToCartBtn from '../../../showcase/AddToCartBtn/AddToCartBtn';
 import { addToCart } from '../../../../store/cartSlice';
 import CustomCheckbox from '../../../UI/CustomCheckbox/CustomCheckbox';
@@ -231,7 +232,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
   const imageUrl = photo ? `http://94.124.78.52:8017/images/${photo}` : 'https://cdn.icon-icons.com/icons2/4135/PNG/512/plate_dish_food_dinnerware_icon_260731.png';
 
   return (
-    <Section>
+    <Section >
       <>
         <div className={classes.backWrapper}>
           <Back />
@@ -256,7 +257,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
               <p className={classes.desTitle}>Описание продукта</p>
               <p className={classes.desc}>{description}</p>
             </div>
-            <AddToCartBtn
+            {/* <AddToCartBtn
               product={{
                 productId: id.toString(),
                 name,
@@ -264,17 +265,18 @@ const ProductPage: React.FC<IProductPageProps> = () => {
                 quantity,
               }}
               onClick={handleAddToCart}
-            />
+            /> */}
           </div>
 
-          <div className={classes['content-wrapper']}>
+          <div className={classes['content-wrappers']}>
             <div className={classes['description-wrapper']}>
               <p className={classes.desTitle}>Дополнительные товары</p>
               <ul className={classes.list}>
                 {extra &&
                   Object.entries(extra).map(([key, [extraName, extraPrice]]) => (
                     <li className={classes.descs} key={key}>
-                      {extraName}: <p>{extraPrice} ₽</p>
+                      <div className={classes.descsc}> {extraName}: <div>{extraPrice} ₽</div></div>
+                     
                       <CustomCheckbox
                         checked={selectedExtras[key]}
                         onChange={() => handleExtraChange(key)}
@@ -285,6 +287,22 @@ const ProductPage: React.FC<IProductPageProps> = () => {
             </div>
           </div>
         </div>
+        <div className={classes.ButtonWrapper}>
+        <Button
+            def="main"
+            mode="primary"
+            onClick={handleAddToCart}
+            product={{
+              productId: id.toString(),
+              name,
+              price: calculateTotalPrice(),
+              quantity,
+            }}
+          >
+            Добавить в корзину
+          </Button>
+      </div>
+
       </>
     </Section>
   );

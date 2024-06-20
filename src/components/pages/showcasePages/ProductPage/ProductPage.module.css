@@ -13,6 +13,7 @@
   z-index: 10;
   background-color: rgb(255, 255, 255);
   height: 91px;
+  
 }
 
 .cart {
@@ -55,6 +56,22 @@
   background-color: #ffffff;
   padding: 16px;
   margin-bottom: 20px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  box-shadow: 0px -3px 50px var(--boxShadow), 0px -3px 50px var(--boxShadow);
+}
+
+
+.content-wrappers {
+  display: flex;
+ 
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 16px;
+  padding-bottom: 0px;
+  margin-bottom: 100px;
   border-radius: 15px;
   box-sizing: border-box;
   box-shadow: 0px -3px 50px var(--boxShadow), 0px -3px 50px var(--boxShadow);
@@ -153,3 +170,30 @@
 
 
 
+
+.ButtonWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  bottom: 0;
+
+
+
+  position: fixed;
+ 
+  left: 0;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.ButtonWrapper button {
+  width: calc(100vw - 40px);
+}
+
+
+.descsc{
+  margin-bottom: 10px;
+}
