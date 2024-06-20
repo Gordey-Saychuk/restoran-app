@@ -1,0 +1,26 @@
+.checkbox {
+  width: 25px;
+  height: 25px;
+  border: 2px solid #dcdcdc;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.checked {
+  border-color: #f00;
+ 
+}
+
+.checkmark {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: -12px; 
+  left: 3px;
+  pointer-events: none; 
+}

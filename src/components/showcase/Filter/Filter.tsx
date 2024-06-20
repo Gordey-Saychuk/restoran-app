@@ -1,5 +1,3 @@
-// src/components/showcase/Filter/Filter.tsx
-
 import React from 'react';
 import Checkbox from '../../UI/Checkbox/Checkbox';
 import classes from './Filter.module.css';
@@ -19,6 +17,6 @@ const Filter: React.FC<IFilterProps> = ({ checkboxItems, onCheck }) => {
       </div>
     </div>
   );
-};
+}; 
 
 export default Filter;

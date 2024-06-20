@@ -5,6 +5,19 @@
   flex-direction: column;
 }
 
+.skeletonCategoryContainer{
+  display: flex;
+}
+
+.skeletonProductContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+ 
+}
+
 
 .filter{
 
@@ -17,6 +30,5 @@
   background-color: white;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+ 
 }

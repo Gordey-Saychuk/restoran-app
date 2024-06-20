@@ -7,17 +7,17 @@ import RestaurantName from '../../../UI/RestaurantName/RestaurantName';
 import RestaurantRatings from '../../../UI/RestaurantRatings/RestaurantRatings';
 import classes from './ShowcasePage.module.css';
 
-// SVG иконки для кнопки
 import { ReactComponent as ExpandIcon } from '../../../UI/icons/ShapeTop/Shape.svg';
 import { ReactComponent as CollapseIcon } from '../../../UI/icons/Shape/Shape.svg';
 import TopBar from '../../../UI/TopBar/TopBar';
 
-
 import defaultCafeImage from '../../../UI/icons/img/16-08-21-001.jpg';
 
+interface ShowcasePageProps {
+  restaurantId: number;
+}
 
-
-const ShowcasePage: React.FC = () => {
+const ShowcasePage: React.FC<ShowcasePageProps> = ({ restaurantId }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [restaurant, setRestaurant] = useState({ name: '', rating: 0, photo: 'default_cafe_01.png' });
   const location = useLocation();
@@ -27,10 +27,9 @@ const ShowcasePage: React.FC = () => {
   const isProductPage = /^\/[^/]+\/[^/]+$/.test(location.pathname); 
 
   useEffect(() => {
-    
     const fetchRestaurant = async () => {
       try {
-        const response = await fetch('http://94.124.78.52:8017/restaurant/?restaurant_id=1');
+        const response = await fetch(`http://94.124.78.52:8017/restaurant/?restaurant_id=${restaurantId}`);
         const data = await response.json();
         setRestaurant(data);
       } catch (error) {
@@ -39,7 +38,7 @@ const ShowcasePage: React.FC = () => {
     };
 
     fetchRestaurant();
-  }, []);
+  }, [restaurantId]);
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -59,33 +58,31 @@ const ShowcasePage: React.FC = () => {
 
   return (
     <div>
-    
-    <div
-      className={isLanguagePage ? classes.languageBackground : (isProductPage || isHomePage ? classes.background : classes.normalBackground)}
-      style={isHomePage || isProductPage ? backgroundStyle : {}}
-    >
-      {(isHomePage || isProductPage) && (
-        <div className={classes.headerInfo}>
-          <TopBar fill='#fff' />
-          <RestaurantName name={restaurant.name} />
-          <RestaurantRatings rating={restaurant.rating} />
-        </div>
-      )}
-      
-      <div className={classes.showcaseContainer}>
-        {(isProductPage || isHomePage) && (
-          <button onClick={toggleExpand} className={`${classes.expandButton} ${isExpanded ? classes.expandedButton : classes.collapsedButton}`}>
-            {isExpanded ? <CollapseIcon /> : <ExpandIcon />}
-          </button>
+      <div
+        className={isLanguagePage ? classes.languageBackground : (isProductPage || isHomePage ? classes.background : classes.normalBackground)}
+        style={isHomePage || isProductPage ? backgroundStyle : {}}
+      >
+        {(isHomePage || isProductPage) && (
+          <div className={classes.headerInfo}>
+            <TopBar fill='#fff' />
+            <RestaurantName name={restaurant.name} />
+            <RestaurantRatings rating={restaurant.rating} />
+          </div>
         )}
-       
-      </div>
-      <div className={`${classes.showcase} ${isProductPage || isHomePage ? (isExpanded ? classes.expanded : classes.collapsed) : ''}`}>
+        
+        <div className={classes.showcaseContainer}>
+          {(isProductPage || isHomePage) && (
+            <button onClick={toggleExpand} className={`${classes.expandButton} ${isExpanded ? classes.expandedButton : classes.collapsedButton}`}>
+              {isExpanded ? <CollapseIcon /> : <ExpandIcon />}
+            </button>
+          )}
+        </div>
+        <div className={`${classes.showcase} ${isProductPage || isHomePage ? (isExpanded ? classes.expanded : classes.collapsed) : ''}`}>
           <ShowcaseMain>
             <Outlet />
           </ShowcaseMain>
         </div>
-    </div>
+      </div>
     </div>
   );
 };
