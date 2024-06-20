@@ -50,6 +50,7 @@
   flex-direction: column;
   gap: 20px;
   background: white;
+  /* box-shadow: 0 4px 8px #A3A3A3; */
   border-radius: 50px 50px 0 0;
   transition: all 0.3s ease-in-out;
 }
@@ -62,7 +63,7 @@
   flex-direction: column;
   gap: 20px;
   background: white;
-  box-shadow: 0 4px 8px #A3A3A3;
+  /* box-shadow: 0 4px 8px #A3A3A3; */
   transition: all 0.3s ease-in-out;
 }
 
@@ -75,6 +76,7 @@
   flex-direction: column;
   gap: 20px;
   background: white;
+  /* box-shadow: 0 4px 8px #A3A3A3; */
   border-radius: 50px 50px 0 0;
   transition: all 0.3s ease-in-out;
   -ms-overflow-style: none;  
