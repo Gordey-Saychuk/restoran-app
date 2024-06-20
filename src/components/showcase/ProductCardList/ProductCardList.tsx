@@ -30,7 +30,7 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ dishes }) => {
           {productsToRender.map((product) => (
             <CartItem
               key={product.id}
-              productId={product.id.toString()}
+              productId={product.id}
               name={product.name}
               price={product.price}
             

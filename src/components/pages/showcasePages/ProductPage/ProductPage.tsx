@@ -200,7 +200,8 @@ const ProductPage: React.FC<IProductPageProps> = () => {
       totalWeight: 0, 
       isWished: false, 
     };
-
+    
+    console.log(cartItem)
     dispatch(addToCart(cartItem));
     
   };
@@ -212,7 +213,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
         <div className={classes['product-page']}>
           <div className={classes.cart}>
             <CartItemComponent
-              productId={id.toString()}
+              productId={id}
               name={name}
               price={price}
               image={imageUrl}

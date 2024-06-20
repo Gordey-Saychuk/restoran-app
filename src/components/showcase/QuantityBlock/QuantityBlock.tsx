@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './QuantityBlock.module.css';
 
 interface IQuantityBlockProps {
-  id: string;
+  id?: string;
   quantity: number;
   setQuantity: (quantity: number) => void;
 }
