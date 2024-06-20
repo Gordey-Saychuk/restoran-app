@@ -36,24 +36,27 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<ProductCartItem>) => {
-
-      const existingItem = state.items.find(
-        (item) => item.productId === action.payload.productId
-      );
-      if (existingItem) {
-        existingItem.quantity += action.payload.quantity;
-        existingItem.totalPrice += action.payload.totalPrice;
-      } else {
-        state.items.push(action.payload);
-      }
-
-      // Сохраняем изменения в localStorage
+      // const existingItem = state.items.find(
+      //   (item) => item.productId === action.payload.productId
+      // );
+      // if (existingItem) {
+      //   existingItem.quantity += action.payload.quantity;
+      //   existingItem.totalPrice += action.payload.totalPrice;
+      // } else {
+      // }
+      state.items.push(action.payload);
       saveCartToLocalStorage(state.items);
+      
     },
-    // Другие редьюсеры...
+    removeProductFromCart: (state, action: PayloadAction<string>) => {
+      const index = state.items.findIndex((cartItem) => cartItem.productId === action.payload);
+      if (index !== -1) {
+        state.items.splice(index, 1);
+      }
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeProductFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

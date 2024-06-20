@@ -12,7 +12,7 @@ interface TopBar {
 }
 
 const TopBar: React.FC<TopBar> = ({ fill }) => {
-  const { cart } = useSelector((state: RootState) => state.user);
+  const cart = useSelector((state: RootState) => state.cart.items);
 
   return (
     <div className={style.TopBar}>
