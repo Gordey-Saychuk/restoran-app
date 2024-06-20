@@ -11,17 +11,20 @@
   padding: 8px 25px;
   border-radius: 15px;
   background-color: #fff;
-  border: 2px solid #d2d2d2;
+  border: 2px solid #D2D2D2;
   cursor: pointer;
-  color: #a3a3a3;
+  color: #3E3E3E;
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis; 
+
+
+  
 }
 
 .checked {
   color: rgb(255, 255, 255);
-
+  border-color: var(--red);
   background-color: var(--red);
 }
 

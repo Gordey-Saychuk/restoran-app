@@ -25,10 +25,10 @@ const WishlistPage: React.FC = () => {
         <SectionBody>
           <SectionBodyGrid displayBlock={!hasProducts}>
             <>
-              {hasProducts && <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />}
+              {/* {hasProducts && <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />} */}
               {error.isError && <Placeholder text={error.message} size={'38px'} />}
               {!hasProducts && !error.isError && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'38px'} />}
-              {hasProducts && <ProductCardList products={productsTorender} />}
+              {/* {hasProducts && <ProductCardList products={productsTorender} />} */}
             </>
           </SectionBodyGrid>
         </SectionBody>

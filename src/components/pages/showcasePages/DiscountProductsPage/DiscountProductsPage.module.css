@@ -7,7 +7,8 @@
 
 
 .filter{
-  max-width: 420px;
+
+  width: 100%;
   position: -webkit-sticky;
   position: sticky ;
   top: 0;
@@ -16,59 +17,6 @@
   background-color: white;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-radius: 20px;
-}
-
-@media screen and (min-width: 350px) {
-  .filter{
-    max-width: 370px;
-  }
-}
-
-@media screen and (min-width: 380px) {
-  .filter{
-    max-width: 400px;
-  }
-}
-
-@media screen and (min-width: 423px) {
-  .filter{
-    max-width: 430px;
-  }
-}
-
-@media screen and (min-width: 444px) {
-  .filter{
-    max-width: 450px;
-  }
-}
-
-@media screen and (min-width: 452px) {
-  .filter{
-    max-width: 460px;
-  }
-}
-
-@media screen and (min-width: 470px) {
-  .filter{
-    max-width: 480px;
-  }
-}
-
-@media screen and (min-width: 480px) {
-  .filter{
-    max-width: 490px;
-  }
-}
-
-@media screen and (min-width: 490px) {
-  .filter{
-    max-width: 500px;
-  }
-}
-
-@media screen and (min-width: 500px) {
-  .filter{
-    max-width: 550px;
-  }
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }

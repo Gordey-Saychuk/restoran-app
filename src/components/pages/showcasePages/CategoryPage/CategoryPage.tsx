@@ -38,10 +38,10 @@ const CategoryPage: React.FC = () => {
             <>
               <div className={classes.wrapper}>
                 <CategoriesList categories={categories} />
-                <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />
+                {/* <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} /> */}
               </div> 
 
-              {hasProducts && <ProductCardList products={productsTorender} />}
+              {/* {hasProducts && <ProductCardList products={productsTorender} />} */}
               {!hasProducts && <Placeholder text={NO_PRODUCTS_MESSAGE} size={'38px'} />}
             </>
           </SectionBodyGrid>

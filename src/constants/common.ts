@@ -15,3 +15,16 @@ export const GENDER = [
       url: 'male',
     },
   ];
+
+ // src/types/common.ts
+export interface Dish {
+  id: number;
+  restaurant_id: number;
+  category_id: number;
+  name: string;
+  photo: string;
+  description: string;
+  price: number;
+  extra: object;
+}
+

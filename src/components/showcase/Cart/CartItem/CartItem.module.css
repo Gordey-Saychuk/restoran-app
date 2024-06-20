@@ -41,6 +41,7 @@
   line-height: 18px;
   text-align: left;
   height: 20px;
+  min-width: 250px;
 }
 
 .product-name {
@@ -120,9 +121,16 @@ letter-spacing: 0.22499999403953552px;
 .image {
 
   border-radius: 4px;
-  width: 132px;
-  max-height: 69px;
+  width: 110px;
+  max-height: 80px;
   object-fit: contain;
+}
+
+
+@media screen and (max-width: 420px) {
+  .product-desc-wrapper {
+  min-width: 200px;
+  }
 }
 
 @media screen and (min-width: 768px) {

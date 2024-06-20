@@ -1,43 +1,64 @@
-import { useSelector } from 'react-redux';
-import { NO_DISCOUNTED_PRODUCTS } from '../../../../constants/messages';
-import useFilterByBrand from '../../../../hooks/useFilterByBrand';
-import { RootState } from '../../../../store/store';
+// src/components/pages/showcasePages/DiscountProductsPage/DiscountProductsPage.tsx
+
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '../../../../store/store';
+import { fetchDishes, Dish } from '../../../../store/discountedProductsSlice';
+import { fetchCategories } from '../../../../store/categoriesSlice';
 import Section from '../../../layouts/showcaseLayouts/Section/Section';
-import SectionBody from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBody';
-import SectionBodyGrid from '../../../layouts/showcaseLayouts/Section/SectionBody/SectionBodyGrid/SectionBodyGrid';
-import SectionHeader from '../../../layouts/showcaseLayouts/Section/SectionHeader/SectionHeader';
-import Filter from '../../../showcase/Filter/Filter'; 
-import ProductCardList from '../../../showcase/ProductCardList/ProductCardList';
 import Placeholder from '../../../UI/Placeholder/Placeholder';
+import ProductCardList from '../../../showcase/ProductCardList/ProductCardList';
 import classes from './DiscountProductsPage.module.css';
+import Filter from '../../../showcase/Filter/Filter';
 
-interface IDiscountProductsPageProps {} 
+interface IDiscountProductsPageProps {
+  restaurantId: number;
+}
 
-const DiscountProductsPage: React.FC<IDiscountProductsPageProps> = () => {
-  const { products, error } = useSelector((state: RootState) => state.product);
-  const { brands } = useSelector((state: RootState) => state.brand);
-  const discountedProducts = products.filter((product) => product.name);
-  const { checkFilterItem, productsTorender, checkboxItems } = useFilterByBrand(discountedProducts, brands);
-  const hasProducts = discountedProducts.length > 0;
+const DiscountProductsPage: React.FC<IDiscountProductsPageProps> = ({ restaurantId }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { dishes, isLoading: dishesLoading, error: dishesError } = useSelector((state: RootState) => state.discountedProducts);
+  const { categories, isLoading: categoriesLoading, error: categoriesError } = useSelector((state: RootState) => state.categories);
+  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+
+  useEffect(() => {
+    dispatch(fetchDishes(restaurantId));
+    dispatch(fetchCategories(restaurantId));
+  }, [dispatch, restaurantId]);
+
+  const handleCategoryCheck = (categoryId: number) => {
+    setSelectedCategories((prev) => 
+      prev.includes(categoryId) ? prev.filter(id => id !== categoryId) : [...prev, categoryId]
+    );
+  };
+
+  const filteredDishes = selectedCategories.length > 0 
+    ? dishes.filter(dish => selectedCategories.includes(dish.category_id)) 
+    : dishes;
 
   return (
     <Section>
-      <>
-        {/* <SectionHeader title={'Скидки'} /> */}
-    
-    
-            <div className={classes.headerInfo}>
-              <div className={classes.filter}>
-              <Filter checkboxItems={checkboxItems} onCheck={checkFilterItem} />
-              </div>
-              {error.isError && <Placeholder text={error.message} size={'38px'} />}
-              {!hasProducts && !error.isError && <Placeholder text={NO_DISCOUNTED_PRODUCTS} size={'38px'} />}
+      <div className={classes.headerInfo}>
+        <div className={classes.filter}>
+          {categoriesLoading && <Placeholder text="Загружаем категории..." size="38px" />}
+          {categoriesError && <Placeholder text={categoriesError} size="38px" />}
+          {!categoriesLoading && !categoriesError && (
+            <Filter 
+              checkboxItems={categories} 
+              onCheck={handleCategoryCheck} 
+            />
+          )}
+        </div>
 
-              {hasProducts && <ProductCardList products={productsTorender} />}
-            </div>
-      
-    
-      </>
+        {dishesLoading && <Placeholder text="Загружаем продукты..." size="38px" />}
+        {dishesError && <Placeholder text={dishesError} size="38px" />}
+        {!dishesLoading && !dishesError && filteredDishes.length === 0 && (
+          <Placeholder text="No dishes available" size="38px" />
+        )}
+        {!dishesLoading && !dishesError && filteredDishes.length > 0 && (
+          <ProductCardList dishes={filteredDishes} />
+        )}
+      </div>
     </Section>
   );
 };

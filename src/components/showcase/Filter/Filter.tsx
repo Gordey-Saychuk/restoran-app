@@ -1,10 +1,12 @@
+// src/components/showcase/Filter/Filter.tsx
+
 import React from 'react';
 import Checkbox from '../../UI/Checkbox/Checkbox';
 import classes from './Filter.module.css';
 
 interface IFilterProps {
-  checkboxItems: any[];
-  onCheck: (id: string) => void;
+  checkboxItems: { id: number, name: string }[];
+  onCheck: (id: number) => void;
 }
 
 const Filter: React.FC<IFilterProps> = ({ checkboxItems, onCheck }) => {

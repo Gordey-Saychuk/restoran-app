@@ -1,32 +1,32 @@
-import { generatePath, Link } from "react-router-dom";
-import {
-  ADD_TO_WISHLIST,
-  REMOVE_FROM_WISHLIST,
-} from "../../../../constants/messages";
-import { ProductCartItem } from "../../../../types/common";
-import IconButton from "../../../UI/IconButton/IconButton";
-import FavoriteIcon from "../../../UI/icons/FavoriteIcon/FavoriteIcon";
-import TrashIcon from "../../../UI/icons/TrashIcon/TrashIcon";
-import QuantityBlock from "../../QuantityBlock/QuantityBlock";
-import classes from "./CartItem.module.css";
+import React from 'react';
+import { generatePath, Link } from 'react-router-dom';
+import { ProductCartItem } from '../../../../types/common';
+import IconButton from '../../../UI/IconButton/IconButton';
+import FavoriteIcon from '../../../UI/icons/FavoriteIcon/FavoriteIcon';
+import TrashIcon from '../../../UI/icons/TrashIcon/TrashIcon';
+import QuantityBlock from '../../QuantityBlock/QuantityBlock';
+import classes from './CartItem.module.css';
 
 interface ICartItemProps {
-  productId: ProductCartItem["productId"];
-  name: ProductCartItem["name"];
-  image: ProductCartItem["image"];
-  price: ProductCartItem["price"];
-  quantity?: ProductCartItem["quantity"];
-  totalPrice?: ProductCartItem["totalPrice"];
-  weight?: ProductCartItem["weight"];
-  totalWeight?: ProductCartItem["totalWeight"];
-  profit?: ProductCartItem["profit"];
-  discount?: ProductCartItem["discount"];
-  discountedPrice?: ProductCartItem["discountedPrice"];
-  categoryUrl?: ProductCartItem["categoryUrl"];
-  isWished?: ProductCartItem["isWished"];
+  productId: ProductCartItem['productId'];
+  name: ProductCartItem['name'];
+  image: ProductCartItem['image'];
+  price: ProductCartItem['price'];
+  quantity?: ProductCartItem['quantity'];
+  totalPrice?: ProductCartItem['totalPrice'];
+  weight?: ProductCartItem['weight'];
+  totalWeight?: ProductCartItem['totalWeight'];
+  profit?: ProductCartItem['profit'];
+  discount?: ProductCartItem['discount'];
+  discountedPrice?: ProductCartItem['discountedPrice'];
+  categoryUrl?: ProductCartItem['categoryUrl'];
+  isWished?: ProductCartItem['isWished'];
   onWishlist?: () => void;
   onRemove?: () => void;
-  description?: ProductCartItem["description"]; // Make description optional
+  description?: ProductCartItem['description']; 
+  extra?: Record<string, [string, number]>; 
+  isProductPage?: boolean; 
+  setQuantity?: (quantity: number) => void; 
 }
 
 const CartItem: React.FC<ICartItemProps> = ({
@@ -42,6 +42,9 @@ const CartItem: React.FC<ICartItemProps> = ({
   isWished,
   onWishlist,
   onRemove,
+  extra,
+  isProductPage,
+  setQuantity,
 }) => {
   const totalPriceWithoutDiscount = price * (quantity ?? 1);
   const truncatedDescription =
@@ -50,9 +53,9 @@ const CartItem: React.FC<ICartItemProps> = ({
       : description;
 
   return (
-    <div className={classes["cart-item"]}>
+    <div className={classes['cart-item']}>
       {onRemove && (
-        <div className={classes["remove"]}>
+        <div className={classes['remove']}>
           <IconButton onClick={onRemove}>
             <TrashIcon />
           </IconButton>
@@ -61,41 +64,43 @@ const CartItem: React.FC<ICartItemProps> = ({
       <div
         className={classes.imageWrapper}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <img src={image} alt={name} className={classes.image} />
       </div>
-      <div className={classes["product-info"]}>
-        <div className={classes["product-name-wrapper"]}>
+      <div className={classes['product-info']}>
+        <div className={classes['product-name-wrapper']}>
           <Link
-            to={generatePath("/:categoryUrl/:id", {
+            to={generatePath('/:categoryUrl/:id', {
               categoryUrl,
               id: productId,
             })}
-            className={classes["product-name"]}
+            className={classes['product-name']}
           >
             {name}
+            <div className={classes['product-desc-wrapper']}>
+              {truncatedDescription}
+            </div>
           </Link>
-          <div className={classes["product-desc-wrapper"]}>
-            {truncatedDescription}
-          </div>
         </div>
 
-        <div className={classes["price-quantity-wrapper"]}>
-          {quantity !== undefined && <QuantityBlock id={productId} disableDecrement />}
-          <div className={classes["price-wrapper"]}>
+        <div className={classes['price-quantity-wrapper']}>
+          {isProductPage && quantity !== undefined && setQuantity && (
+            <QuantityBlock id={productId} quantity={quantity} setQuantity={setQuantity} />
+          )}
+          <div className={classes['price-wrapper']}>
             <span
-              className={`${classes.price} ${
-                discount && classes["discount-price"]
-              }`}
+              className={`${classes.price} ${discount && classes['discount-price']}`}
             >
-              <span className={classes["price"]}>$ {totalPrice}</span>
+              <span className={classes['price']}>$ {price}</span>
             </span>
           </div>
         </div>
+        
+       
       </div>
     </div>
   );

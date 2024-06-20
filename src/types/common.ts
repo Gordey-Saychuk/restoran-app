@@ -85,6 +85,8 @@ export type ProductCartItem = CartItem & {
 
 };
 
+
+
 // src/types/common.ts
 
 export type Dish = {
@@ -96,6 +98,8 @@ export type Dish = {
   description: string;
   price: number;
   extra: { [key: string]: [string, number] };
+  isWished?: boolean; 
+
 };
 
 
