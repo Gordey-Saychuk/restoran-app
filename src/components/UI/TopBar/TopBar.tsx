@@ -22,7 +22,12 @@ const TopBar: React.FC<TopBar> = ({ fill }) => {
         to="/language"
         icon={<SwitchLanguageIcon fill={fill} />}
       />
-      <a href="/cart">
+      <Badge
+        count={cart.length}
+        to="/cart"
+        icon={<CartIcon fill={fill} /> }
+      />
+      {/* <a href="/cart">
         <svg
           width={20}
           height={20}
@@ -56,7 +61,7 @@ const TopBar: React.FC<TopBar> = ({ fill }) => {
             stroke-linejoin="round"
           />
         </svg>
-      </a>
+      </a> */}
     </div>
   );
 };

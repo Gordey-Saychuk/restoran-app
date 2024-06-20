@@ -21,10 +21,10 @@ interface ICartProps {
     id,
     isWished,
   }: {
-    id: ProductCartItem["productId"];
+    id: Dish["id"];
     isWished: boolean;
   }) => void;
-  onRemove: (id: ProductCartItem["productId"]) => void;
+  onRemove: (id: Dish["id"]) => void;
   price: ProductCartItem["price"];
   weight: ProductCartItem["weight"];
   profit: ProductCartItem["profit"];
@@ -44,7 +44,6 @@ const Cart: React.FC<ICartProps> = ({
 
   const notify = () => toast("Wow so easy!");
 
-  console.log(selectedTable);
   const {
     categories,
     isLoading: categoriesLoading,
@@ -84,6 +83,7 @@ const Cart: React.FC<ICartProps> = ({
                 return (
                   <>
                     <CartItem
+                      onRemove={onRemove}
                       productId={cartItem.id}
                       name={cartItem.name}
                       price={cartItem.price}
@@ -136,14 +136,6 @@ const Cart: React.FC<ICartProps> = ({
             `№ ${selectedTable}`
           )}
         </div>
-        <div className={classes.tableBtn} onClick={toggleModal}>
-          <div>Выбрать столик : </div>{" "}
-          {selectedTable === 0 ? (
-            <div style={{ color: "white" }}>"Не выбран"</div>
-          ) : (
-            `№ ${selectedTable}`
-          )}
-        </div>
 
         {firstLoad && (
           <div
@@ -165,9 +157,14 @@ const Cart: React.FC<ICartProps> = ({
           </div>
         )}
       </div>
-      <Button onClick={notify} def="main" mode="primary">
-        Оформить
-      </Button>
+      <div className={classes.ButtonWrapper}>
+        <Button onClick={notify} def="main" mode="primary">
+          Оформить
+        </Button>
+      </div>
+
+
+
       <ToastContainer
         position="top-center"
         autoClose={2000}
@@ -181,24 +178,7 @@ const Cart: React.FC<ICartProps> = ({
         theme="light"
         transition={Slide}
       />
-      <Button def="main" mode="primary">
-        Оформить
-      </Button>
-      <div className={showModal ? classes.modalActive : classes.modal}>
-        <Title>Заголовок</Title>
-        <div onClick={() => handleTable(1)} className={classes.itemModal}>
-          Столик номер №1
-        </div>
-        <div onClick={() => handleTable(2)} className={classes.itemModal}>
-          Столик номер №2
-        </div>
-        <div onClick={() => handleTable(3)} className={classes.itemModal}>
-          Столик номер №3
-        </div>
-        <div onClick={toggleModal} className={classes.closeModal}>
-          <TrashIcon />
-        </div>
-      </div>
+
     </div>
   );
 };

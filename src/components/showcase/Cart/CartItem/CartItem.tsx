@@ -6,6 +6,7 @@ import FavoriteIcon from '../../../UI/icons/FavoriteIcon/FavoriteIcon';
 import TrashIcon from '../../../UI/icons/TrashIcon/TrashIcon';
 import QuantityBlock from '../../QuantityBlock/QuantityBlock';
 import classes from './CartItem.module.css';
+import { on } from 'events';
 
 interface ICartItemProps {
   productId?: Dish['id'];
@@ -22,7 +23,7 @@ interface ICartItemProps {
   categoryUrl?: Dish['category_id'];
   isWished?: ProductCartItem['isWished'];
   onWishlist?: () => void;
-  onRemove?: () => void;
+  onRemove?: (id : string) => void;
   description?: ProductCartItem['description']; 
   extra?: Record<string, [string, number]>; 
   isProductPage?: boolean; 
@@ -53,12 +54,12 @@ const CartItem: React.FC<ICartItemProps> = ({
       : description;
 
       console.log(name,image, quantity, productId, discount , price, categoryUrl)
-
+  console.log(productId)
   return (
     <div className={classes['cart-item']}>
       {onRemove && (
         <div className={classes['remove']}>
-          <IconButton onClick={onRemove}>
+          <IconButton onClick={() => onRemove(productId)}>
             <TrashIcon />
           </IconButton>
         </div>

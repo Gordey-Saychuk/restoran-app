@@ -38,9 +38,9 @@ const CartPage: React.FC = () => {
 
 
   const cartProducts: Dish[] = cart.map((cartItem) => {
+    console.log(cartItem);
     const product = dishes?.find((product) => product.id === Number(cartItem.productId));
     const isWished = wishlist.includes(cartItem.productId);
-    console.log(categories)
     
     return {
       ...cartItem,
@@ -67,8 +67,9 @@ const CartPage: React.FC = () => {
     dispatch(wishListHandler({ id, isWished }));
   };
 
-  const handleRemoveCartItem = (id: CartItem['productId']) => {
-    dispatch(removeProductFromCart(id));
+  const handleRemoveCartItem = (id: Dish['id']) => {
+    console.log(id)
+    dispatch(removeProductFromCart(String(id)));
     dispatch(setToLocalStorage('cart'));
   };
 
