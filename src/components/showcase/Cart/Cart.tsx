@@ -17,13 +17,7 @@ import { fetchCategories } from "../../../store/categoriesSlice";
 
 interface ICartProps {
   cart: Dish[];
-  onWish: ({
-    id,
-    isWished,
-  }: {
-    id: Dish["id"];
-    isWished: boolean;
-  }) => void;
+  onWish: ({ id, isWished }: { id: Dish["id"]; isWished: boolean }) => void;
   onRemove: (id: Dish["id"]) => void;
   price: ProductCartItem["price"];
   weight: ProductCartItem["weight"];
@@ -98,7 +92,7 @@ const Cart: React.FC<ICartProps> = ({
           </div>
           <div className={classes.cartBlur}></div>
         </div>
-        <Total price={price} />
+
         {/* <TableNumber
     <div className={classes.cart}>
       <div className={classes["cart-items-wrapper"]}>
@@ -128,15 +122,6 @@ const Cart: React.FC<ICartProps> = ({
         setSelectedTable={setSelectedTable}
       /> */}
 
-        <div className={classes.tableBtn} onClick={toggleModal}>
-          <div>Выбрать столик : </div>{" "}
-          {selectedTable === 0 ? (
-            <div style={{ color: "white" }}>"Не выбран"</div>
-          ) : (
-            `№ ${selectedTable}`
-          )}
-        </div>
-
         {firstLoad && (
           <div
             className={showModal ? classes.modalActive : classes.modalInitial}
@@ -158,12 +143,38 @@ const Cart: React.FC<ICartProps> = ({
         )}
       </div>
       <div className={classes.ButtonWrapper}>
+        <div className={classes.tableBtn} onClick={toggleModal}>
+          <div className={classes.tableText}>
+            <div>Выбрать столик : </div>{" "}
+            {selectedTable === 0 ? (
+              <div style={{ color: "var(--text)" }}>"Не выбран"</div>
+            ) : (
+              `№ ${selectedTable}`
+            )}
+          </div>
+          <div>
+            <svg
+              width="8"
+              height="14"
+              viewBox="0 0 8 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 13L1 7L7 1"
+                stroke="#FF5656"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+        <Total price={price} />
         <Button onClick={notify} def="main" mode="primary">
           Оформить
         </Button>
       </div>
-
-
 
       <ToastContainer
         position="top-center"
@@ -178,7 +189,6 @@ const Cart: React.FC<ICartProps> = ({
         theme="light"
         transition={Slide}
       />
-
     </div>
   );
 };

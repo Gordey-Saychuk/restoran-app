@@ -6,7 +6,6 @@ import FavoriteIcon from '../../../UI/icons/FavoriteIcon/FavoriteIcon';
 import TrashIcon from '../../../UI/icons/TrashIcon/TrashIcon';
 import QuantityBlock from '../../../UI/QuantityBlocks/QuantityBlock'; // Ensure correct import
 import classes from './CartItem.module.css';
-import { on } from 'events';
 
 interface ICartItemProps {
   productId?: Dish['id'];
@@ -53,8 +52,6 @@ const CartItem: React.FC<ICartItemProps> = ({
       ? `${description.slice(0, 50)}...`
       : description;
 
-      console.log(name,image, quantity, productId, discount , price, categoryUrl)
-  console.log(productId)
   return (
     <div className={classes['cart-item']} style={{ borderRadius }}>
       {onRemove && (
