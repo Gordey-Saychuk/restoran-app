@@ -7,7 +7,9 @@ import CartItem from "./CartItem/CartItem";
 import CartSummary from "./CartSummary/CartSummary";
 import Total from "./Total/Total";
 import Title from "../../UI/Title/Title";
+import "react-toastify/dist/ReactToastify.css";
 import TrashIcon from "../../UI/icons/TrashIcon/TrashIcon";
+import { Slide, ToastContainer, toast } from "react-toastify";
 
 interface ICartProps {
   cart: ProductCartItem[];
@@ -34,7 +36,9 @@ const Cart: React.FC<ICartProps> = ({
 }) => {
   const [selectedTable, setSelectedTable] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [firstLoad, setFirstLoad] = useState<boolean>(true);
+  const [firstLoad, setFirstLoad] = useState<boolean>(false);
+
+  const notify = () => toast("Wow so easy!");
 
   console.log(selectedTable);
 
@@ -43,8 +47,8 @@ const Cart: React.FC<ICartProps> = ({
   };
 
   useEffect(() => {
-    setFirstLoad(false);
-  }, []);
+    setFirstLoad(true);
+  }, [firstLoad]);
 
   const handleTable = (index: number) => {
     setSelectedTable(index);
@@ -52,67 +56,87 @@ const Cart: React.FC<ICartProps> = ({
   };
 
   return (
-    <div className={classes.cart}>
-      <div className={classes["cart-items-wrapper"]}>
-        <div className={classes.cartWrapper}>
-          {cart.map((cartItem) => {
-            return (
-              <>
-                <CartItem
-                  key={cartItem.productId}
-                  {...cartItem}
-                  quantity={undefined}
-                  isWished={cartItem.isWished}
-                  onRemove={() => onRemove(cartItem.productId)}
-                  onWishlist={() =>
-                    onWish({
-                      id: cartItem.productId,
-                      isWished: cartItem.isWished,
-                    })
-                  }
-                />
-              </>
-            );
-          })}
+    <div className={classes.cartContainer}>
+      <div className={classes.cart}>
+        <div className={classes.cartMain}>
+          <div className={classes["cart-items-wrapper"]}>
+            <div className={classes.cartWrapper}>
+              {cart.map((cartItem) => {
+                return (
+                  <>
+                    <CartItem
+                      key={cartItem.productId}
+                      {...cartItem}
+                      quantity={undefined}
+                      isWished={cartItem.isWished}
+                      onRemove={() => onRemove(cartItem.productId)}
+                      onWishlist={() =>
+                        onWish({
+                          id: cartItem.productId,
+                          isWished: cartItem.isWished,
+                        })
+                      }
+                    />
+                  </>
+                );
+              })}
+            </div>
+          </div>
+          <div className={classes.cartBlur}></div>
         </div>
-      </div>
-      <Total price={price} />
-      {/* <TableNumber
+        <Total price={price} />
+        {/* <TableNumber
         showDropdown={showDropdown}
         setShowDropdown={setShowDropdown}
         selectedTable={selectedTable}
         setSelectedTable={setSelectedTable}
       /> */}
 
-      <div className={classes.tableBtn} onClick={toggleModal}>
-        <div>Выбрать столик : </div>{" "}
-        {selectedTable === 0 ? (
-          <div style={{ color: "white" }}>"Не выбран"</div>
-        ) : (
-          `№ ${selectedTable}`
+        <div className={classes.tableBtn} onClick={toggleModal}>
+          <div>Выбрать столик : </div>{" "}
+          {selectedTable === 0 ? (
+            <div style={{ color: "white" }}>"Не выбран"</div>
+          ) : (
+            `№ ${selectedTable}`
+          )}
+        </div>
+
+        {firstLoad && (
+          <div
+            className={showModal ? classes.modalActive : classes.modalInitial}
+          >
+            <Title>Выбор стола</Title>
+            <div onClick={() => handleTable(1)} className={classes.itemModal}>
+              Столик номер №1
+            </div>
+            <div onClick={() => handleTable(2)} className={classes.itemModal}>
+              Столик номер №2
+            </div>
+            <div onClick={() => handleTable(3)} className={classes.itemModal}>
+              Столик номер №3
+            </div>
+            <div onClick={toggleModal} className={classes.closeModal}>
+              <TrashIcon />
+            </div>
+          </div>
         )}
       </div>
-
-      <Button def="main" mode="primary">
+      <Button onClick={notify} def="main" mode="primary">
         Оформить
       </Button>
-      {showModal && (
-        <div className={firstLoad ?  classes.modalInitial : classes.modalActive}>
-          <Title>Выбор стола</Title>
-          <div onClick={() => handleTable(1)} className={classes.itemModal}>
-            Столик номер №1
-          </div>
-          <div onClick={() => handleTable(2)} className={classes.itemModal}>
-            Столик номер №2
-          </div>
-          <div onClick={() => handleTable(3)} className={classes.itemModal}>
-            Столик номер №3
-          </div>
-          <div onClick={toggleModal} className={classes.closeModal}>
-            <TrashIcon />
-          </div>
-        </div>
-      )}
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Slide}
+      />
     </div>
   );
 };
