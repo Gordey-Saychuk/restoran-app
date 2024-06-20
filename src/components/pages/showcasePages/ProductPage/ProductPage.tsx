@@ -256,7 +256,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
               <p className={classes.desTitle}>Описание продукта</p>
               <p className={classes.desc}>{description}</p>
             </div>
-            {/* <AddToCartBtn
+            <AddToCartBtn
               product={{
                 productId: id.toString(),
                 name,
@@ -264,7 +264,7 @@ const ProductPage: React.FC<IProductPageProps> = () => {
                 quantity,
               }}
               onClick={handleAddToCart}
-            /> */}
+            />
           </div>
 
           <div className={classes['content-wrapper']}>
